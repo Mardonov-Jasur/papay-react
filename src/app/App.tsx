@@ -1,11 +1,13 @@
+import {Box, Button, Container, Stack, Typography } from "@mui/material";
 import React from 'react';
 import '../css/App.css';
+import { RippleBadge } from "./MaterialTheme/styled";
 
 function App() {
   return (
-    <div className="App">
-      <h1>REACT ISHGA TUSHDI</h1>
-    </div>
+      <Container>
+      
+      </Container>
   );
 }
 
