@@ -48,7 +48,7 @@ export function TopRestaurant() {
                               startDecorator={<LocationOnRoundedIcon />}
                               textColor="neutral.300"
                             >
-                              Ferghana city
+                              Ferghana city, Navoiy
                             </Typography>
                           </CardContent>
                           <CardOverflow 
@@ -124,13 +124,13 @@ export function TopRestaurant() {
                           />
                           <CardContent sx={{ justifyContent: 'flex-end' }}>
                             <Typography level="h2" fontSize={"lg"} textColor="#fff" mb={1}>
-                              Texas De Brazil
+                              Koryo
                             </Typography>
                             <Typography
                               startDecorator={<LocationOnRoundedIcon />}
                               textColor="neutral.300"
                             >
-                              Ferghana city
+                              Tashkent city, Chilanzar
                             </Typography>
                           </CardContent>
                           <CardOverflow 
@@ -167,7 +167,7 @@ export function TopRestaurant() {
                                     alignItems: "center",
                                     display: "flex"
                                   }}>
-                                    100{""}
+                                    150{""}
                                     <VisibilityIcon sx={{fontSize: 20, marginLeft: "5px"}}/>
                                 </Typography>
                                  <Box sx={{width: 2, bgcolor: "divider"}}/>
@@ -178,7 +178,7 @@ export function TopRestaurant() {
                                     alignItems: "center",
                                     display: "flex",
                                    }}>
-                                    <div>50</div>
+                                    <div>70</div>
                                     <Favorite sx={{fontSize: 20, marginLeft: "5px"}}/>
                                 </Typography>   
                                    
@@ -206,13 +206,13 @@ export function TopRestaurant() {
                           />
                           <CardContent sx={{ justifyContent: 'flex-end' }}>
                             <Typography level="h2" fontSize={"lg"} textColor="#fff" mb={1}>
-                              Texas De Brazil
+                              Dene
                             </Typography>
                             <Typography
                               startDecorator={<LocationOnRoundedIcon />}
                               textColor="neutral.300"
                             >
-                              Ferghana city
+                              Samarqand city, Registon
                             </Typography>
                           </CardContent>
                           <CardOverflow 
@@ -249,7 +249,7 @@ export function TopRestaurant() {
                                     alignItems: "center",
                                     display: "flex"
                                   }}>
-                                    100{""}
+                                    140{""}
                                     <VisibilityIcon sx={{fontSize: 20, marginLeft: "5px"}}/>
                                 </Typography>
                                  <Box sx={{width: 2, bgcolor: "divider"}}/>
@@ -260,7 +260,7 @@ export function TopRestaurant() {
                                     alignItems: "center",
                                     display: "flex",
                                    }}>
-                                    <div>50</div>
+                                    <div>90</div>
                                     <Favorite sx={{fontSize: 20, marginLeft: "5px"}}/>
                                 </Typography>   
                                    
@@ -288,13 +288,13 @@ export function TopRestaurant() {
                           />
                           <CardContent sx={{ justifyContent: 'flex-end' }}>
                             <Typography level="h2" fontSize={"lg"} textColor="#fff" mb={1}>
-                              Texas De Brazil
+                              Kipr
                             </Typography>
                             <Typography
                               startDecorator={<LocationOnRoundedIcon />}
                               textColor="neutral.300"
                             >
-                              Ferghana city
+                              Andijan city, Axshak
                             </Typography>
                           </CardContent>
                           <CardOverflow 
@@ -331,7 +331,7 @@ export function TopRestaurant() {
                                     alignItems: "center",
                                     display: "flex"
                                   }}>
-                                    100{""}
+                                    120{""}
                                     <VisibilityIcon sx={{fontSize: 20, marginLeft: "5px"}}/>
                                 </Typography>
                                  <Box sx={{width: 2, bgcolor: "divider"}}/>
@@ -342,7 +342,7 @@ export function TopRestaurant() {
                                     alignItems: "center",
                                     display: "flex",
                                    }}>
-                                    <div>50</div>
+                                    <div>45</div>
                                     <Favorite sx={{fontSize: 20, marginLeft: "5px"}}/>
                                 </Typography>   
                                    
