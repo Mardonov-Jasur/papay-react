@@ -1,6 +1,6 @@
 import { Favorite, Visibility } from '@mui/icons-material';
 import { AspectRatio, Card, CardOverflow, CssVarsProvider, IconButton } from '@mui/joy';
-import { Box, Container, Stack } from '@mui/material';
+import { Box, Button, Container, Stack } from '@mui/material';
 import React from 'react';
 import Typography from '@mui/joy/Typography';
 import Link from '@mui/joy/Link';
@@ -9,11 +9,11 @@ import CallIcon from '@mui/icons-material/Call';
 
 export function BestRestaurants() {
     return (
-        <div className='top_restaurant_frame'>
+        <div className='best_restaurant_frame'>
             <img src={"icons/line_group.svg"}
               style={{position: "absolute", left:"6%", transform: "rotate(90deg)"}}
             />
-            <Container sx={{mt: "153px"}}>
+            <Container sx={{paddingTop: "153px"}}>
                 <Stack flexDirection={"column"} alignItems={"center"}>
                     <Box className="category_title">Zo'r Restaurantlar</Box>
                     <Stack sx={{mt: "43px"}} flexDirection={"row"}>
@@ -370,6 +370,12 @@ export function BestRestaurants() {
                                </CardOverflow>
                             </Card>
                         </CssVarsProvider>
+                    </Stack>
+
+                    <Stack flexDirection={"row"} justifyContent={"flex-end"} style={{width: "100%", marginTop: "30px"}}>
+                        <Button style={{background: "#1976d2", color: "#ffffff"}}>
+                            Barchasini Ko'rish            
+                        </Button>
                     </Stack>
                 </Stack>
             </Container>
