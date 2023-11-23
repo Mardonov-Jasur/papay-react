@@ -15,9 +15,9 @@ import Typography from "@mui/joy/Typography";
 import Link from "@mui/joy/Link";
 import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
 import CallIcon from "@mui/icons-material/Call";
-import VisibilityIcon from "@mui/icons-material/Visibility";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import Visibility from "@mui/icons-material/Visibility";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 
 const order_list = Array.from(Array(8).keys());
 console.log(order_list);
@@ -119,7 +119,7 @@ export function AllRestaurants() {
                         py: 1.5,
                         px: "var(--Card-padding)",
                         borderTop: "1px solid",
-                        borderColor: "neutral.outineBorder",
+                        borderColor: "neutral.outlinedBorder",
                         bgcolor: "background.level1"
                       }}>
                       <Typography
@@ -130,8 +130,10 @@ export function AllRestaurants() {
                           alignItems: "center",
                           display: "flex"
                         }}>
-                        100{""}
-                        <Visibility sx={{ fontSize: 20, marginLeft: "5px" }} />
+                        1000 {""}
+                        <VisibilityIcon
+                          sx={{ fontSize: 20, marginLeft: "5px" }}
+                        />
                       </Typography>
                       <Box sx={{ width: 2, bgcolor: "divider" }} />
                       <Typography
@@ -143,7 +145,9 @@ export function AllRestaurants() {
                           display: "flex"
                         }}>
                         <div>500</div>
-                        <Favorite sx={{ fontSize: 20, marginLeft: "5px" }} />
+                        <FavoriteIcon
+                          sx={{ fontSize: 20, marginLeft: "5px" }}
+                        />
                       </Typography>
                     </CardOverflow>
                   </Card>
