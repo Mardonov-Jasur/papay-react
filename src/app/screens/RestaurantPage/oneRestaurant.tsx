@@ -24,16 +24,16 @@ export function OneRestaurant() {
           <Stack className="avatar_big_box">
             <Box className="top_text">
               <p>Baraka Restaurant</p>
-              <Box className="Single_search_big_box">
-                <form className="Single_search_form" action={""} method={""}>
+              <Box className={"Single_search_big_box"}>
+                <form className={"Single_search_form"} action={""} method={""}>
                   <input
-                    type="search"
-                    className="Single_searchInput"
-                    name="Single_resSearch"
-                    placeholder="Qidiruv"
+                    type={"search"}
+                    className={"Single_searchInput"}
+                    name={"Single_resSearch"}
+                    placeholder={"Qidiruv"}
                   />
                   <Button
-                    className="Single_button_search"
+                    className={"Single_button_search"}
                     variant="contained"
                     endIcon={<SearchIcon />}>
                     Izlash
