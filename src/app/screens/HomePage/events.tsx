@@ -46,18 +46,18 @@ export function Events() {
         <Stack className="events_main">
           <Box className="events_text">Hodisalar</Box>
           <Box className="prev_next_frame">
-            <img
+            {/* <img
               src="/icons/arrow_right.svg"
-              style={{ transform: "rotate(180deg)" }}
-              alt="left arow icon"
               className="swiper-button-prev"
-            />
-            <div className={"dot_frame_pagination  swiper-pagination"}></div>
-            <img
-              className={"swiper-button-next"}
+              style={{ transform: "rotate(180deg)" }}
+              alt=""
+            /> */}
+            <div className={"dot_frame_pagination swiper-pagination"}></div>
+            {/* <img
               src="/icons/arrow_right.svg"
-              alt="left arow icon"
-            />
+              className="swiper-button-next"
+              alt=""
+            /> */}
           </Box>
           <Swiper
             className="events_info"
@@ -66,15 +66,15 @@ export function Events() {
             spaceBetween={30}
             navigation={{
               nextEl: ".swiper-button-next",
-              prevEl: ".swiper-button-prev",
+              prevEl: ".swiper-button-prev"
             }}
             pagination={{
               el: ".swiper-pagination",
-              clickable: true,
+              clickable: true
             }}
             autoplay={{
               delay: 2000,
-              disableOnInteraction: true,
+              disableOnInteraction: true
             }}>
             {eventlist.map((value, number) => (
               <SwiperSlide className="events_info_frame" key={value.date}>
@@ -97,7 +97,7 @@ export function Events() {
                             style={{
                               width: "20px",
                               height: "20px",
-                              marginRight: "10px",
+                              marginRight: "10px"
                             }}
                           />
                           <p className="spec_text_author">{value.author}</p>
@@ -116,7 +116,7 @@ export function Events() {
                             style={{
                               width: "20px",
                               height: "20px",
-                              marginRight: "10px",
+                              marginRight: "10px"
                             }}
                           />
                           {value.date}
@@ -128,7 +128,7 @@ export function Events() {
                             style={{
                               width: "20px",
                               height: "20px",
-                              marginRight: "10px",
+                              marginRight: "10px"
                             }}
                           />
                           <p className="btm_info_main_txt">{value.location}</p>

@@ -223,14 +223,15 @@
   line-height: normal;
 }
 
-.prev_next_frame {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 250px;
-  height: 24px;
-  margin-top: 19px;
-  margin-left: auto;
+.homepage .events_main .prev_next_frame{
+    /* position: relative; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+    height: 24px;
+    margin-left: auto;
+    margin-top: 19px;
 }
 
 .dot_frame_pagination {

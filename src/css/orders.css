@@ -1,0 +1,229 @@
+.order_page {
+    width: 100%;
+    height: auto;
+    background: #0b0e11;
+    display: flex;
+    align-items: center;
+}
+.order_page .order_left {
+    width: 70%;
+    height: auto;
+}
+.order_page .order_right {
+    margin-top: 72px;
+    margin-left: 30px;
+    width: 40%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+.order_page .order_right .order_info_box {
+    width: 100%;
+    padding: 20px;
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.742); /***************/
+    border-radius: 16px;
+    box-shadow: inset 0px 4px 4px 0px rgba(0, 0, 0, 0.25),
+      inset 0px 4px 4px 0px rgba(0, 0, 0, 0.25),
+      inset 0px 4px 16px 0px rgba(242, 189, 87, 0.04);
+  }
+  
+  .order_page .order_info_box .order_user_img {
+    width: 117px;
+    height: 112px;
+    position: relative;
+    display: flex;
+    border-radius: 37px;
+    background: url("/public/auth/default_user.svg");
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    background-size: cover;
+    margin-bottom: 10px;
+  }
+  
+  .order_page .order_info_box .order_user_img img {
+    position: absolute;
+    border-radius: 35px;
+    background: rgba(0, 0, 0, 0.33);
+    padding: 5px;
+    right: -5%;
+    bottom: -5%;
+  }
+  
+  .order_page .order_info_box .order_user_name {
+    width: 238px;
+    height: 37px;
+    color: #08090d;
+    font-family: "Commissioner";
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 36px;
+    margin: 0;
+    text-align: center;
+  }
+  
+  .order_page .order_info_box .order_user_prof {
+    color: #a1a1a1;
+    font-family: "Commissioner";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 36px; /* 180% */
+    margin: 0;
+  }
+  .order_page .order_info_box .marginer {
+    width: 332.59px;
+    height: 2px;
+    background: #A1A1A1;
+    margin-top: 30px;
+  }
+  
+  .order_page .order_info_box .order_user_address {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+  }
+  
+  /* 2.2 Card info */
+  .order_page .payment_box {
+    width: 400px;
+    height: auto;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.742);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15px;
+    padding-top: 20px;
+  }
+  
+  .order_page .payment_box input {
+    outline: none;
+    border: none;
+    height: 50px;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.114);
+    font-family: "Commissioner";
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 36px; /* 240% */
+    margin-bottom: 10px;
+    border-radius: 5px;
+    padding-left: 15px;
+  }
+  
+  .order_page .payment_box .cards {
+    padding: 30px 0 20px 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+  }
+  
+  .order_page .payment_box a img {
+    margin: 10px;
+    width: 50px;
+    height: 32px;
+    cursor: pointer;
+  }
+  
+  
+  /* ***  Components -> Orders ->  3 components    *** */
+  .order_page .order_main_box {
+    height: auto;
+    width: 821px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.742);
+    box-shadow: 0px 4px 16px 0px rgba(242, 189, 87, 0.04) inset,
+      0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset,
+      0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+    padding: 10px 0;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  /* order_box_scroll */
+  .order_main_box .order_box_scroll {
+    display: flex;
+    flex-direction: column;
+    margin-left: 40px;
+  }
+  
+  .order_main_box .order_box_scroll .ordersName_price {
+    margin-bottom: 20px;
+    display: flex;
+    width: 70%;
+    height: 50px;
+    align-items: center;
+  }
+  
+  .order_main_box .order_box_scroll .ordersName_price .orderDishImg {
+    width: 50px;
+    height: 47px;
+    border-radius: 50%;
+  }
+  
+  .order_main_box .order_box_scroll .ordersName_price .titleDish {
+    color: #000;
+    font-family: "Commissioner";
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 600;
+    margin-left: 20px;
+    margin-right: 70px;
+  }
+  
+  .order_main_box .order_box_scroll .ordersName_price .priceBox {
+    display: flex;
+  }
+  
+  /* total_price_box */
+  .order_main_box .total_price_box {
+    padding: 0 20px;
+    width: 100%;
+    height: 42px;
+    border-radius: 5px;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+    background: rgba(217, 217, 217, 0.50);
+    display: flex;;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .order_main_box .total_price_box .boxTotal {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .order_main_box .total_price_box .boxTotal p {
+    margin-right: 10px;
+  }
+  .order_main_box .total_price_box .boxTotal img {
+    margin-right: 10px;
+  }
+
+  /* Component 1: Paused */
+  .order_page .paused {
+    background: rgba(217, 217, 217, 0.5);
+  }
+  
+  /* Component 2: Process */
+  .order_page .process {
+    background: rgb(211, 160, 40);
+  }
+
+  /* Component 3: Finish */
+  .order_page .finished {
+    background: #ff0505;
+  }
