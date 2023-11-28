@@ -62,7 +62,7 @@ export default function PausedOrders(props: any) {
                 style={{
                   background: "red",
                   color: "white",
-                  marginRight: "0px"
+                  marginRight: "15px"
                 }}>
                 Bekor qilish
               </Button>
