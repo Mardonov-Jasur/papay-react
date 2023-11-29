@@ -10,7 +10,7 @@ import CallIcon from '@mui/icons-material/Call';
 export function BestRestaurants() {
     return (
         <div className='best_restaurant_frame'>
-            <img src={"icons/line_group.svg"}
+            <img src={"icons/line_group.svg"} alt=''
               style={{position: "absolute", left:"6%", transform: "rotate(90deg)"}}
             />
             <Container sx={{paddingTop: "153px"}}>

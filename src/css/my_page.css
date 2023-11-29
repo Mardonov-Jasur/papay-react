@@ -1,0 +1,14 @@
+.my_page .menu_name {
+    width: 821px;
+    height: 70px;
+    margin-top: 74px;
+    margin-left: 105px;
+    color: #FFF;
+
+    text-align: center;
+    font-family: "Poppins";
+    font-size: 45px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
