@@ -62,8 +62,13 @@
 }
 
 .my_page .my_page_right .order_info_box {
-  position: relative;
-  padding-top: 28px;
+  width: 372.58px;
+  height: 408px;
+  flex-shrink: 0;
+  border-radius: 16px;
+  background: #FFF;
+
+  box-shadow: 0px 4px 16px 0px rgba(242, 189, 87, 0.04) inset, 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset, 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
 }
 
 .my_page .my_page_right .order_info_box .info_box_item {
@@ -78,12 +83,24 @@
   right: 55px;
 }
 
+.my_page .info_box_item .order_user_img .big_svg {
+  width: 117px;
+  height: 112px;
+  margin-top: 28px;
+  flex-shrink: 0;
+  border-radius: 37px;
+  background: lightgray 50% / cover no-repeat;
+
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
 .my_page .info_box_item .order_user_img .svg {
-  position: absolute;
-  width: 30px;
-  height: 30px;
-  bottom: 0;
-  right: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 122px;
+  z-index: 1px;
+  border-radius: 37px;
+  background: lightgray 50% / cover no-repeat
 }
 
 .my_page .info_box_item .order_user_info {
@@ -94,24 +111,34 @@
 }
 
 .my_page .order_user_info .name {
-  color: #08090d;
+    width: 251px;
+  height: 37px;
+  margin-left: 90px;
+  justify-content: center;
+  align-items: center;
+  color: #08090D;
+
   font-family: Commissioner;
   font-size: 28px;
   font-style: normal;
   font-weight: 500;
-  line-height: 36px;
+  line-height: 36px; /* 128.571% */
 }
 
 .my_page .order_user_info .user_prof {
-  color: #a1a1a1;
-  font-family: Commissioner;
+    width: 140px;
+  height: 37px;
+  flex-shrink: 0;
+  color: #A1A1A1;
+
+  font-family: "Commissioner";
   font-size: 20px;
   font-style: normal;
   font-weight: 500;
-  line-height: 36px;
+  line-height: 36px; /* 180% */
 }
 .my_page_right .user_media_box {
-  margin-top: 16px;
+  margin-top: 7px;
   margin-bottom: 25px;
   display: flex;
   justify-content: center;
@@ -130,16 +157,24 @@
 }
 
 .my_page .my_page_right .maqola_yoz_sec {
-  display: flex;
-  margin: 10px 0;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
+  width: 400px;
+  height: 20px;
+  flex-shrink: 0;
+  color: #616164;
+
+  font-family: DM Sans;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 150% */
 }
+
 
 .maqola_yoz_sec button {
   width: 146px;
   height: 36px;
+  margin-top: 50px;
+  margin-left: 120px;
   border-radius: 10px;
   border: 1px solid #0288d1;
   background: #0288d1;
@@ -180,6 +215,8 @@
 }
 
 .my_page_menu .menu_box {
+  width: 372px;
+  height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -1,7 +1,9 @@
-import { Favorite, FavoriteBorder } from "@mui/icons-material";
+import { Favorite, FavoriteBorder, Visibility } from "@mui/icons-material";
 import { Box, Checkbox, Link, Stack } from "@mui/material";
 import React from "react";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
+import moment from "moment";
+import { Typography } from "@mui/joy";
 
 const MemberPosts = () => {
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
@@ -17,26 +19,50 @@ const MemberPosts = () => {
             <Box className="all_article_container">
               <Box className="user_prof">
                 <img src="/icons/user_icon.svg" alt="" />
-                <span>Statham</span>
+                <span>Sheeran</span>
               </Box>
               <Box className="evaluation">
-                <span>evaluation</span>
-                <p>Frey zo'r restaurant</p>
+                <span style={{ fontSize: "30px" }}>Frey restaurant</span>
               </Box>
-              <Box className="views">
-                <p>20-10-16 01:42</p>
-                <p className="evaluation_text">
-                  <Checkbox
-                    {...label}
-                    icon={<FavoriteBorder />}
-                    checkedIcon={<Favorite style={{ fill: "red" }} />}
+              <Box
+                style={{
+                  position: "absolute",
+                  display: "flex",
+                  flexDirection: "row",
+                  gap: "15px",
+                  marginLeft: "300px",
+                  marginTop: "30px"
+                }}>
+                <span style={{ color: "white" }}>
+                  {moment().format("YY-MM-DD HH:mm")}
+                </span>
+                <Typography
+                  level="body-sm"
+                  sx={{
+                    fontWeight: "md",
+                    color: "text.secondary",
+                    alignItems: "center",
+                    display: "flex"
+                  }}>
+                  100{""}
+                  <Visibility
+                    sx={{ fontSize: 20, marginLeft: "5px", color: "white" }}
                   />
-                  <span>1</span>
-                </p>
-                <Box className="eye">
-                  <RemoveRedEyeIcon />
-                  <span>2</span>
-                </Box>
+                </Typography>
+                <Box sx={{ width: 2, bgcolor: "divider" }} />
+                <Typography
+                  level="body-sm"
+                  sx={{
+                    fontWeight: "md",
+                    color: "text.secondary",
+                    alignItems: "center",
+                    display: "flex"
+                  }}>
+                  <div>500</div>
+                  <Favorite
+                    sx={{ fontSize: 20, marginLeft: "5px", color: "white" }}
+                  />
+                </Typography>
               </Box>
             </Box>
           </Link>

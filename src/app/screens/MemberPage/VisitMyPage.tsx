@@ -101,17 +101,18 @@ const VisitMyPage = () => {
               </Box>
             </Stack>
             <Stack className="my_page_right">
+
               <Box className="order_info_box">
                 <a onClick={() => setValue("6")} className="settings_btn">
                   <Settings />
                 </a>
                 <Box className="info_box_item">
                   <div className="order_user_img">
-                    <img src="/icons/user-icon.svg" alt="" />
-                    <img className="svg" src="/icons/user-icon.svg" alt="" />
+                    <img className="big_svg" src="/community/moto1.jpg" alt="" />
+                    <img className="svg" src="/icons/user_icon.svg" alt="" />
                   </div>
                   <div className="order_user_info">
-                    <span className="name">Safid</span>
+                    <span className="name">Safid Barun</span>
                     <span className="user_prof">Foydalanuvchi</span>
                   </div>
                 </Box>
@@ -121,10 +122,10 @@ const VisitMyPage = () => {
                   <Telegram />
                   <YouTube />
                 </Box>
-                <Box className="user_media_box">
+                {/* <Box className="user_media_box">
                   <p>Followers: 2</p>
                   <p>Followings: 2</p>
-                </Box>
+                </Box> */}
                 <p className="user_media_box">Salom Mening Ismim Safid</p>
                 <Box className="maqola_yoz_sec">
                   <TabList
@@ -143,6 +144,7 @@ const VisitMyPage = () => {
                   </TabList>
                 </Box>
               </Box>
+
               <Box>
                 <TabList
                   onChange={handleChange}
