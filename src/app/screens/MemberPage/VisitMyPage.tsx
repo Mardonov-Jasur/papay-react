@@ -88,7 +88,7 @@ const VisitMyPage = () => {
                 </TabPanel>
                 <TabPanel value="5">
                   <Box className="menu_name">Tanlangan Maqola</Box>
-                  <Box className="menu_content">
+                  <Box className="menu_content" style={{height: "500px"}}>
                     {/* <TViewer text={"<div>Hello</div>"} /> */}
                   </Box>
                 </TabPanel>
