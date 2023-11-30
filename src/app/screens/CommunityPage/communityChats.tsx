@@ -1,33 +1,27 @@
-import React, { useState } from "react";
-import { Box, Avatar, Stack } from "@mui/material";
+import { Avatar, Box, Stack } from "@mui/material";
+import React from "react";
 import SendIcon from "@mui/icons-material/Send";
 
-export function CommunityChats() {
-  /* INITIALIZATIONS*/
-  const [messagesList, setMessagesList] = useState([]);
-
+const CommunityChats = () => {
+  const [messageList, setMessageList] = React.useState([]);
   return (
     <Stack className="chat_frame">
       <Box className="chat_top">Jonli Muloqot</Box>
-      <Box className="chat_content">
-        <Stack className="chat_main">
-          <Box
-            flexDirection={"row"}
-            style={{ display: "flex" }}
-            alignItems={"flex-end"}
-            justifyContent={"flex-end"}
-            sx={{ m: "10px 0px" }}>
+      <Stack className="chat_content">
+        <span className="chiziq"></span>
+        <Box className="chat_main">
+          <Box className="chat_main_right">
             <div className="msg_right">Hello</div>
           </Box>
-          <Box
-            flexDirection="row"
-            style={{ display: "flex" }}
-            sx={{ m: "10px 0px" }}>
-            <Avatar alt={"martin"} src={"/community/cute_girl.jpg"} />
+          <Box className="chat_main_left">
+            <Avatar alt="Jonny" src="/comunity/user1.svg" />
             <div className="msg_left">Hi! How are you?</div>
           </Box>
-        </Stack>
-      </Box>
+          <Box className="chat_main_right">
+            <div className="msg_right">Fine</div>
+          </Box>
+        </Box>
+      </Stack>
       <Box className="chat_bott">
         <input
           type="text"
@@ -36,9 +30,11 @@ export function CommunityChats() {
           placeholder="Xabar jo'natish"
         />
         <button className="send_msg_btn">
-          <SendIcon style={{ color: "blue" }} />
+          <SendIcon />
         </button>
       </Box>
     </Stack>
   );
-}
+};
+
+export default CommunityChats;

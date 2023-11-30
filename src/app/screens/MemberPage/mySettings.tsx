@@ -1,80 +1,50 @@
-import React, { useEffect, useState } from "react";
-import { Box, Container, Stack } from "@mui/material";
-import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
-import Button from "@mui/material/Button";
+import { CloudDownload } from "@mui/icons-material";
+import { Box, Button, Stack } from "@mui/material";
+import React from "react";
 
-export function MySettings(props: any) {
+const MySettings = (prop: any) => {
   return (
     <Stack className="my_settings_page">
       <Box className="member_media_frame">
-        <img
-          src="/auth/default_user.svg"
-          alt=""
-          className="mb_image"
-          style={{ borderRadius: "50%" }}
-          width="100px"
-          height="100px"
-        />
-        <div className="media_change_box">
+        <img src="/icons/user_icon.svg" alt="" />
+        <Box className="media_change_box">
           <span>Rasm Yuklash</span>
-          <p>JPG, JPEG, PNG rasmlarini yuklay olasiz!</p>
-          <div className="up_del_box">
-            <Button component="label" style={{ minWidth: "0" }}>
-              {" "}
-              <CloudDownloadIcon />
-              <input type="file" hidden />
-            </Button>
-          </div>
-        </div>
+          <p>JPG, JPEG, PNG rasmlarni yuklay olasiz!</p>
+          <Button component="label" className="download">
+            <CloudDownload />
+            <input type="file" hidden />
+          </Button>
+        </Box>
       </Box>
-
-      <Box className="input_frame">
-        <div className="long_input">
-          <label className="spec_label">Ism</label>
-          <input
-            className="spec_input mb_nick"
-            type="text"
-            placeholder="Ismoilov Akmal"
-            name="mb_nick"
-          />
-        </div>
+      <Box className="name_input">
+        <label htmlFor="">Ism</label>
+        <input type="text" placeholder={"Statham"} name="mb_nick" />
       </Box>
-
-      <Box className="input_frame">
-        <div className="short_input">
-          <label className="spec_label">Telefon Raqam</label>
-          <input
-            className="spec_input mb_phone"
-            type="text"
-            placeholder={"99890 7524789"}
-            name="mb_phone"
-          />
-        </div>
-        <div className={"short_input"}>
-          <label className={"spec_label"}>Manzil</label>
-          <input
-            className={"spec_input mb_address"}
-            type="text"
-            placeholder={"Tashkent, Yunus Abad 4-1"}
-            name="mb_address"
-          />
-        </div>
+      <Box className="info_input">
+        <Box className="phone_input">
+          <label htmlFor="">Telefon raqam</label>
+          <input type="text" placeholder={"+821040425681"} name="mb_phone" />
+        </Box>
+        <Box className="address_input">
+          <label htmlFor="">Address</label>
+          <input type="text" placeholder={"Suwon"} name="mb_address" />
+        </Box>
       </Box>
-      <Box className="input_frame">
-        <div className={"long_input"}>
-          <label className={"spec_label"}>Ma'lumot</label>
-
-          <textarea
-            className={"spec_textarea mb_description"}
-            placeholder={"mavjud emas"}
-            name="mb_description"
-          />
-        </div>
+      <Box className="add_info">
+        <label htmlFor="">Malumot</label>
+        <textarea
+          cols={30}
+          name="mb_description"
+          id=""
+          placeholder="Salom, Men Papays Developerlar uyushmasiman"></textarea>
       </Box>
-
-      <Box display={"flex"} justifyContent={"flex-end"} sx={{ mt: "25px" }}>
-        <Button variant={"contained"}>Saqlash</Button>
+      <Box className="save_btn">
+        <Button variant="contained" color="primary">
+          Saqlash
+        </Button>
       </Box>
     </Stack>
   );
-}
+};
+
+export default MySettings;
