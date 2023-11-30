@@ -16,7 +16,7 @@ import { TabPanel } from "@mui/lab";
 import TargetArticles from "./targetAritcles";
 // import TargetArticles from "./targetArticles";
 
-const targetBoArticles = [1, 2, 3];
+// const targetBoArticles = [1, 2, 3];
 
 export function CommunityPage(props: any) {
   // Initializations
@@ -51,16 +51,16 @@ export function CommunityPage(props: any) {
                 </Box>
                 <Stack className="article_main">
                   <TabPanel value="1">
-                    <TargetArticles targetBoArticles={targetBoArticles} />
+                    <TargetArticles targetBoArticles={[1, 2, 3, 4]} />
                   </TabPanel>
                   <TabPanel value="2">
-                    <TargetArticles targetBoArticles={targetBoArticles} />
+                    <TargetArticles targetBoArticles={[1, 2, 3]} />
                   </TabPanel>
                   <TabPanel value="3">
-                    <TargetArticles targetBoArticles={targetBoArticles} />
+                    <TargetArticles targetBoArticles={[1, 2, 3, 4, 5]} />
                   </TabPanel>
                   <TabPanel value="4">
-                    <TargetArticles targetBoArticles={targetBoArticles} />
+                    <TargetArticles targetBoArticles={[1, 2]} />
                   </TabPanel>
                 </Stack>
                 <Box className="article_bott">
@@ -69,6 +69,7 @@ export function CommunityPage(props: any) {
                     page={1}
                     renderItem={(item) => (
                       <PaginationItem
+                      style={{color: "white"}}
                         components={{
                           previous: ArrowBackIcon,
                           next: ArrowForwardIcon

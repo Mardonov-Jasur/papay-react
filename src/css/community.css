@@ -85,6 +85,7 @@
 }
 
 .community_page .article_main .all_article_box {
+  position: relative;
   margin-top: 15px;
   text-decoration: none;
   display: flex;
@@ -343,3 +344,4 @@
 .css-ltjzd6-MuiButtonBase-root-MuiTab-root.Mui-selected {
   border-bottom: 2px solid #0288d1;
 }
+
