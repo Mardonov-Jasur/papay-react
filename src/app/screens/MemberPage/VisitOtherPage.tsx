@@ -21,7 +21,7 @@ import MemberFollowings from "./memberFollowings";
 
 const VisitOtherPage = () => {
   // Initializations
-  const [value, setValue] = useState("4");
+  const [value, setValue] = useState("1");
 
   // Handler
   const handleChange = (event: any, newValue: string) => {
@@ -73,20 +73,15 @@ const VisitOtherPage = () => {
                     <MemberFollowings actions_enabled={false} />
                   </Box>
                 </TabPanel>
-                <TabPanel value="4">
-                  <Box className="menu_name">Tanlangan Maqola</Box>
-                  <Box className="menu_content">
-                    {/* <TViewer text={"<div>Hello</div>"} /> */}
-                  </Box>
-                </TabPanel>
+
               </Box>
             </Stack>
             <Stack className="my_page_right">
               <Box className="order_info_box">
                 <Box className="info_box_item">
                   <div className="order_user_img">
-                    <img src="/community/statham.jpg" alt="" />
-                    <img className="svg" src="/community/sheeran.jpg" alt="" />
+                    <img src="/community/moto1.jpg" alt="" />
+                    <img className="svg" src="/icons/user_icon.svg" alt="" />
                   </div>
                   <div className="order_user_info">
                     <span className="name">Joseph</span>
@@ -110,24 +105,24 @@ const VisitOtherPage = () => {
                     aria-labelledby="simple-tabpanel-label">
                     {value === "1" || value === "4" ? (
                       <Tab
-                        value={"4"}
+                        value={"1"}
                         component={() => (
                           <Button
                             variant="contained"
                             className="btn_follow"
-                            onClick={() => setValue("4")}>
+                            onClick={() => setValue("1")}>
                             Follow Qilish
                           </Button>
                         )}
                       />
                     ) : (
                       <Tab
-                        value={"4"}
+                        value={"1"}
                         component={() => (
                           <Button
                             variant="contained"
                             className="btn_cancel"
-                            onClick={() => setValue("4")}>
+                            onClick={() => setValue("1")}>
                             Bekor Qilish
                           </Button>
                         )}

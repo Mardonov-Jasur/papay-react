@@ -62,6 +62,8 @@
 }
 
 .my_page .my_page_right .order_info_box {
+  display: flex;
+  flex-direction: column;
   width: 372.58px;
   height: 408px;
   flex-shrink: 0;
@@ -79,14 +81,18 @@
 
 .my_page .my_page_right .order_info_box .settings_btn {
   position: absolute;
-  top: 28px;
-  right: 55px;
+  width: 48px;
+  height: 18px;
+  padding-top: 28px;
+  margin-left: 310px;
+  border: 2px;
 }
 
 .my_page .info_box_item .order_user_img .big_svg {
   width: 117px;
   height: 112px;
   margin-top: 28px;
+  z-index: 0px;
   flex-shrink: 0;
   border-radius: 37px;
   background: lightgray 50% / cover no-repeat;
@@ -113,7 +119,7 @@
 .my_page .order_user_info .name {
     width: 251px;
   height: 37px;
-  margin-left: 90px;
+  margin-left: 140px;
   justify-content: center;
   align-items: center;
   color: #08090D;
@@ -139,11 +145,11 @@
 }
 .my_page_right .user_media_box {
   margin-top: 7px;
-  margin-bottom: 25px;
+  margin-bottom: -8px;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 17px;
+  gap: 7px;
   color: #616164;
   font-family: DM Sans;
   font-size: 16px;
@@ -151,6 +157,16 @@
   font-weight: 400;
   line-height: normal;
 }
+
+.my_page_right .user_media_box p {
+    margin-right: 5px;
+}
+
+.my_page_right .user_media_box2 {
+  margin-left: 90px;
+  margin-bottom: -10px;
+}
+
 
 .my_page_right .user_media_box svg {
   cursor: pointer;

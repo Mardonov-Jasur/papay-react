@@ -122,11 +122,11 @@ const VisitMyPage = () => {
                   <Telegram />
                   <YouTube />
                 </Box>
-                {/* <Box className="user_media_box">
+                <Box className="user_media_box">
                   <p>Followers: 2</p>
                   <p>Followings: 2</p>
-                </Box> */}
-                <p className="user_media_box">Salom Mening Ismim Safid</p>
+                </Box>
+                 <p className="user_media_box2">Salom Mening Ismim Safid</p>
                 <Box className="maqola_yoz_sec">
                   <TabList
                     onChange={handleChange}

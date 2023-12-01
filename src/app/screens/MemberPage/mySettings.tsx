@@ -7,8 +7,8 @@ const MySettings = (prop: any) => {
     <Stack className="my_settings_page">
       <Box className="member_media_frame">
         <img src="/icons/user_icon.svg" alt="" />
-        <Box className="media_change_box">
-          <span>Rasm Yuklash</span>
+        <Box className="media_change_box" style={{height: "120px"}}>
+          <span >Rasm Yuklash</span>
           <p>JPG, JPEG, PNG rasmlarni yuklay olasiz!</p>
           <Button component="label" className="download">
             <CloudDownload />
