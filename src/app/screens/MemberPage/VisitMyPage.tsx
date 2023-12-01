@@ -25,6 +25,8 @@ import MemberPosts from "./memberPosts";
 import MemberFollowers from "./memberFollowers";
 import MemberFollowings from "./memberFollowings";
 import MySettings from "./mySettings";
+import TViewer from "./TViewer";
+import TuiEditor from "./TuiEditor";
 // import TuiEditor from "./TuiEditor";
 // import TViewer from "./TViewer";
 
@@ -84,12 +86,12 @@ const VisitMyPage = () => {
                 </TabPanel>
                 <TabPanel value="4">
                   <Box className="menu_name">Maqola yozish</Box>
-                  <Box className="menu_content">{/* <TuiEditor /> */}</Box>
+                  <Box className="menu_content"><TuiEditor /></Box>
                 </TabPanel>
                 <TabPanel value="5">
                   <Box className="menu_name">Tanlangan Maqola</Box>
                   <Box className="menu_content" style={{height: "500px"}}>
-                    {/* <TViewer text={"<div>Hello</div>"} /> */}
+                    <TViewer text={"<div>Hello</div>"} />
                   </Box>
                 </TabPanel>
                 <TabPanel value="6">

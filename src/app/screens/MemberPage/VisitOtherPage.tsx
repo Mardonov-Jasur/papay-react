@@ -17,11 +17,12 @@ import { Facebook, Instagram, Telegram, YouTube } from "@mui/icons-material";
 import MemberPosts from "./memberPosts";
 import MemberFollowers from "./memberFollowers";
 import MemberFollowings from "./memberFollowings";
+import TViewer from "./TViewer";
 // import TViewer from "./TViewer";
 
 const VisitOtherPage = () => {
   // Initializations
-  const [value, setValue] = useState("1");
+  const [value, setValue] = useState("4");
 
   // Handler
   const handleChange = (event: any, newValue: string) => {
@@ -73,7 +74,12 @@ const VisitOtherPage = () => {
                     <MemberFollowings actions_enabled={false} />
                   </Box>
                 </TabPanel>
-
+                <TabPanel value="4">
+                  <Box className="menu_name">Tanlangan Maqola</Box>
+                  <Box className="menu_content">
+                    <TViewer text={"<div>Hello</div>"} />
+                  </Box>
+                </TabPanel>
               </Box>
             </Stack>
             <Stack className="my_page_right">
