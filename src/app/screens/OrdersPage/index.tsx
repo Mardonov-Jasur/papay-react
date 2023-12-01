@@ -50,6 +50,7 @@ export function OrdersPage() {
         <Stack className="order_right">
           <Box className="order_info_box">
             <Box className="order_user_img" />
+            <img src="/community/moto.svg" alt="picturehere" />
             <p className="order_user_name">Zumar Tustiy</p>
             <p className="order_user_prof">Foydalanuvchi</p>
             <Box className="marginer"></Box>

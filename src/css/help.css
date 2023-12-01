@@ -1,0 +1,140 @@
+.help_page {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  background: #0b0e11;
+}
+
+.help_page .help_container {
+  margin: 50px 0;
+}
+
+.help_container .divider {
+  border-bottom: solid 1px white;
+  padding: 10px;
+}
+
+.help_main_content .rules_box {
+  padding: 26px;
+  width: 1224px;
+  height: 304px;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  color: #172b4d;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.help_main_content .rules_box p {
+  border-bottom: 1px solid #c4c4c4;
+  padding-bottom: 15px;
+}
+
+.help_main_content .rules_box p:last-child {
+  border: none;
+}
+
+.admin_letter_container {
+  width: 1224px;
+  height: 771.5px;
+  padding: 90px 60px;
+  border-radius: 8px;
+  border: 1px solid var(--border-1, #ededed);
+  background: var(--color-5, #fff);
+
+  /* shadow-3 */
+  box-shadow: 0px 20px 30px 0px rgba(25, 25, 46, 0.04);
+}
+
+.admin_letter_container .admin_letter_frame span {
+  color: #000;
+  font-family: ABeeZee;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.admin_letter_container .admin_letter_frame p {
+  color: var(--Text---Color, #4f547b);
+  font-family: Sedan;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px; /* 173.333% */
+  margin-top: 15px;
+}
+
+.letter_form {
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.letter_form .input_letter_box label {
+  color: var(--Head---Color, #140342);
+  font-family: Verdana;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-bottom: 10px;
+}
+
+.letter_form .input_letter_box input {
+  margin-top: 10px;
+  border-radius: 8px;
+  border: 1px solid #140342;
+  background: var(--color-white, #fff);
+  width: 1100px;
+  height: 60px;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.letter_form .input_letter_box input::placeholder {
+  color: var(--Text---Color, #4f547b);
+  font-family: Verdana;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px; /* 173.333% */
+}
+
+.input_letter_box textarea {
+  display: block;
+  width: 1100px;
+  height: 150px;
+  border-radius: 8px;
+  border: 1px solid #140342;
+  background: var(--color-white, #fff);
+  padding: 20px;
+}
+
+.input_letter_box textarea::placeholder {
+  color: var(--Text---Color, #4f547b);
+  font-family: Verdana;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px; /* 173.333% */
+}
+
+.admin_letter_container .send_btn {
+  margin-top: 30px;
+  text-align: end;
+}
+
+.send_btn button {
+  text-transform: capitalize;
+}

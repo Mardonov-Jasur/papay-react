@@ -32,17 +32,16 @@
       inset 0px 4px 16px 0px rgba(242, 189, 87, 0.04);
   }
   
-  .order_page .order_info_box .order_user_img {
+  /* .order_page .order_info_box .order_user_img {
     width: 117px;
     height: 112px;
     position: relative;
     display: flex;
     border-radius: 37px;
-    background: url("/public/auth/default_user.svg");
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     background-size: cover;
     margin-bottom: 10px;
-  }
+  } */
   
   .order_page .order_info_box .order_user_img img {
     position: absolute;

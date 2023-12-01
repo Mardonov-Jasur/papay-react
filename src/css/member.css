@@ -88,7 +88,7 @@
   border: 2px;
 }
 
-.my_page .info_box_item .order_user_img .big_svg {
+.big_svg {
   width: 117px;
   height: 112px;
   margin-top: 28px;
@@ -97,14 +97,15 @@
   border-radius: 37px;
   background: lightgray 50% / cover no-repeat;
 
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  /* box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); */
 }
 
 .my_page .info_box_item .order_user_img .svg {
-  width: 20px;
-  height: 20px;
-  margin-top: 122px;
-  z-index: 1px;
+  position: absolute;
+  bottom: 3%;
+  right: 0%;
+  width: 30px;
+  height: 30px;
   border-radius: 37px;
   background: lightgray 50% / cover no-repeat
 }

@@ -109,10 +109,10 @@ const VisitMyPage = () => {
                   <Settings />
                 </a>
                 <Box className="info_box_item">
-                  <div className="order_user_img">
+                  <Stack sx={{position: "relative"}} className="order_user_img">
                     <img className="big_svg" src="/community/moto1.jpg" alt="" />
                     <img className="svg" src="/icons/user_icon.svg" alt="" />
-                  </div>
+                  </Stack>
                   <div className="order_user_info">
                     <span className="name">Safid Barun</span>
                     <span className="user_prof">Foydalanuvchi</span>
