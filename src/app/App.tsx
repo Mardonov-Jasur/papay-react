@@ -28,6 +28,7 @@ import "../css/community.css";
 import "../css/restaurant.css";
 import "../css/member.css";
 import "../css/help.css";
+import Car from "./screens/testCar";
 
 
 function App() {
@@ -63,6 +64,7 @@ function App() {
           <LoginPage />
         </Route>
         <Route path="/">
+          {/* <Car/> */}
           <HomePage />
         </Route>
       </Switch>
