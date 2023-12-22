@@ -24,6 +24,7 @@ const topRestaurantRetriever = createSelector(
 );
 
 export function TopRestaurant() {
+  /**INITIALIZATION */
   const { topRestaurants } = useSelector(topRestaurantRetriever);
 
   console.log("topRestaurants:::", topRestaurants);
@@ -96,7 +97,9 @@ export function TopRestaurant() {
                         <Favorite
                           style={{
                             fill:
-                              ele?.me_liked && ele?.me_liked[0] /*** my_favorite qopketti ******************************************************************** */
+                              ele?.me_liked &&
+                              ele
+                                ?.me_liked[0] /*** my_favorite qopketti ******************************************************************** */
                                 ? "red"
                                 : "white"
                           }}
