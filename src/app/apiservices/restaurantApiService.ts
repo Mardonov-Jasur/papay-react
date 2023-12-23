@@ -2,14 +2,14 @@ import axios from "axios";
 import assert from "assert";
 import { Definer } from "../../lib/Definer";
 import { Restaurant } from "../../types/user";
-import { serviceApi } from "../../lib/config";
+import { serverApi } from "../../lib/config";
 import { SearchObj } from "../../types/others";
 
 class RestaurantApiService {
   private readonly path: string;
 
   constructor() {
-    this.path = serviceApi || "";
+    this.path = serverApi || "";
   }
 
   async getTopRestaurants() {
