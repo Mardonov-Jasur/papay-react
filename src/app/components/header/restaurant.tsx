@@ -11,7 +11,7 @@ export function NavbarRestaurant(props: any) {
               justifyContent={"space-between"}
             >
                 <Box>
-                   <img src="/icons/papay.svg"/>
+                   <img src="/icons/papay.svg" alt=''/>
                 </Box>
                 <Stack
                   flexDirection={"row"}
@@ -52,7 +52,7 @@ export function NavbarRestaurant(props: any) {
                           //  onClick={handleClick}
                         >
                             <Badge badgeContent={3} color='secondary'>
-                                <img src={"/icons/shopping_cart.svg"}/>
+                                <img src={"/icons/shopping_cart.svg"} alt=''/>
                             </Badge>
                       </IconButton>
                     </Box>
@@ -60,6 +60,7 @@ export function NavbarRestaurant(props: any) {
                         <Button
                           variant='contained'
                           style={{color:"#ffffff", background: "#1976d2"}}
+                          onClick={props.handleLoginOpen}
                         >
                             KIRISH
                         </Button>

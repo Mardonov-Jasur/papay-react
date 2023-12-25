@@ -21,7 +21,7 @@ import TViewer from "./TViewer";
 // import TViewer from "./TViewer";
 
 const VisitOtherPage = () => {
-  // Initializations
+  // INITIALIZATIONSs
   const [value, setValue] = useState("4");
 
   // Handler

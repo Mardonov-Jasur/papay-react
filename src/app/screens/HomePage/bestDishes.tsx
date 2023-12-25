@@ -25,9 +25,11 @@ const trendProductsRetriver = createSelector(
 );
 
 export function BestDishes() {
-  /**INITIALIZATION */
+  /**INITIALIZATIONS */
   const { setTrendProducts } = actionDispatch(useDispatch());
-  const { trendProducts } = useSelector(trendProductsRetriver); /**   = [] shuni ozim qoshganman */
+  const { trendProducts } = useSelector(
+    trendProductsRetriver
+  ); /**   = [] shuni ozim qoshganman */
   useEffect(() => {
     const prodductService = new ProductApiService();
     prodductService
@@ -41,7 +43,7 @@ export function BestDishes() {
         <Stack flexDirection={"column"} alignItems={"center"}>
           <Box className="category_title">Trenddagi Ovqatlar</Box>
           <Stack sx={{ mx: "43px" }} flexDirection={"row"}>
-            { trendProducts.map((product: Product) => {
+            {trendProducts.map((product: Product) => {
               const image_path = `${serverApi}/${product.product_images[0]}`;
               console.log("imageeeeeeeeeee", image_path);
               const size_volume =
@@ -52,8 +54,7 @@ export function BestDishes() {
                 <Box className="dish_box">
                   <Stack
                     className="dish_img"
-                    style={{ backgroundImage: `url(${image_path})` }}
-                    >
+                    style={{ backgroundImage: `url(${image_path})` }}>
                     <div className={"dish_sale"}>{size_volume}</div>
                     <div className={"view_btn"}>
                       Batafsil ko'rish

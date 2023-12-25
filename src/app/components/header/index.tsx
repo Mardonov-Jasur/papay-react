@@ -3,9 +3,10 @@ import { Box, Button, Container, IconButton, Stack } from "@mui/material";
 import Badge from "@mui/material/Badge";
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { sweetTopSmallSuccessAlert, sweetTopSuccessAlert } from "../../../lib/sweetAlert";
 
 export function NavbarHome(props: any) {
-  /**INITIALIZATIONS */
+  /**INITIALIZATIONSS */
   const [count, setCount] = useState(0);
   const [value, setValue] = useState(true);
 
@@ -70,7 +71,8 @@ export function NavbarHome(props: any) {
             <Box>
               <Button
                 variant="contained"
-                style={{ color: "#ffffff", background: "#1976d2" }}>
+                style={{ color: "#ffffff", background: "#1976d2" }}
+                onClick={props.handleLoginOpen}>
                 KIRISH
               </Button>
             </Box>
@@ -88,7 +90,7 @@ export function NavbarHome(props: any) {
               The Authentic Restaurant & Cafe
             </Box>
             <Box className="timeline_service">
-              {count} soat xizmatingizdamiz!
+              24 soat xizmatingizdamiz!
             </Box>
             <Box sx={{ mt: "98px" }}>
               <Button
@@ -99,7 +101,7 @@ export function NavbarHome(props: any) {
                   background: "#1976d2",
                   color: "#ffffff"
                 }}
-                onClick={() => setValue(!value)}>
+                onClick={props.handleSignUpOpen}>
                 RO'YHATDAN O'TISH
               </Button>
             </Box>

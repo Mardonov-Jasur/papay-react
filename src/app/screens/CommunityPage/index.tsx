@@ -19,7 +19,7 @@ import TargetArticles from "./targetAritcles";
 // const targetBoArticles = [1, 2, 3];
 
 export function CommunityPage(props: any) {
-  // Initializations
+  // INITIALIZATIONSs
   const [value, setValue] = useState("1");
 
   // Handler
@@ -69,7 +69,7 @@ export function CommunityPage(props: any) {
                     page={1}
                     renderItem={(item) => (
                       <PaginationItem
-                      style={{color: "white"}}
+                        style={{ color: "white" }}
                         components={{
                           previous: ArrowBackIcon,
                           next: ArrowForwardIcon

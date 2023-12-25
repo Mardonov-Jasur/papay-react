@@ -11,7 +11,7 @@ import FinishedOrders from "./finishedOrders";
 import Marginer from "../../components/marginer";
 
 export function OrdersPage() {
-  // Initializations //
+  // INITIALIZATIONSs //
   const [value, setValue] = useState("1");
 
   // Handlers //

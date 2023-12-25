@@ -18,13 +18,11 @@ import RestaurantApiService from "../../apiservices/restaurantApiService";
 /**REDUX SLICE */
 const actionDispatch = (dispach: Dispatch) => ({
   setTopRestaurants: (data: Restaurant[]) => dispach(setTopRestaurants(data)),
-  setBestRestaurants: (data: Restaurant[]) =>
-    dispach(setBestRestaurants(data))
+  setBestRestaurants: (data: Restaurant[]) => dispach(setBestRestaurants(data))
 });
 
-
 export function HomePage() {
-  /**INITIALIZATION */
+  /**INITIALIZATIONS */
   const { setTopRestaurants, setBestRestaurants } = actionDispatch(
     useDispatch()
   );
@@ -42,7 +40,7 @@ export function HomePage() {
     restaurantService
       .getRestaurants({ page: 1, limit: 4, order: "mb_point" })
       .then((data) => {
-        console.log("best:::", data)
+        console.log("best:::", data);
         setBestRestaurants(data);
       })
       .catch((err) => console.log(err));

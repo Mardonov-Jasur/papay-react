@@ -31,7 +31,7 @@ import TuiEditor from "./TuiEditor";
 // import TViewer from "./TViewer";
 
 const VisitMyPage = () => {
-  // Initializations
+  // INITIALIZATIONSs
   const [value, setValue] = useState("5");
 
   // Handler
@@ -86,11 +86,13 @@ const VisitMyPage = () => {
                 </TabPanel>
                 <TabPanel value="4">
                   <Box className="menu_name">Maqola yozish</Box>
-                  <Box className="menu_content"><TuiEditor /></Box>
+                  <Box className="menu_content">
+                    <TuiEditor />
+                  </Box>
                 </TabPanel>
                 <TabPanel value="5">
                   <Box className="menu_name">Tanlangan Maqola</Box>
-                  <Box className="menu_content" style={{height: "500px"}}>
+                  <Box className="menu_content" style={{ height: "500px" }}>
                     <TViewer text={"<div>Hello</div>"} />
                   </Box>
                 </TabPanel>
@@ -103,14 +105,19 @@ const VisitMyPage = () => {
               </Box>
             </Stack>
             <Stack className="my_page_right">
-
               <Box className="order_info_box">
                 <a onClick={() => setValue("6")} className="settings_btn">
                   <Settings />
                 </a>
                 <Box className="info_box_item">
-                  <Stack sx={{position: "relative"}} className="order_user_img">
-                    <img className="big_svg" src="/community/moto1.jpg" alt="" />
+                  <Stack
+                    sx={{ position: "relative" }}
+                    className="order_user_img">
+                    <img
+                      className="big_svg"
+                      src="/community/moto1.jpg"
+                      alt=""
+                    />
                     <img className="svg" src="/icons/user_icon.svg" alt="" />
                   </Stack>
                   <div className="order_user_info">
@@ -128,7 +135,7 @@ const VisitMyPage = () => {
                   <p>Followers: 2</p>
                   <p>Followings: 2</p>
                 </Box>
-                 <p className="user_media_box2">Salom Mening Ismim Safid</p>
+                <p className="user_media_box2">Salom Mening Ismim Safid</p>
                 <Box className="maqola_yoz_sec">
                   <TabList
                     onChange={handleChange}
