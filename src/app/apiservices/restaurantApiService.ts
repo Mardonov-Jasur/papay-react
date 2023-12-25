@@ -21,7 +21,7 @@ class RestaurantApiService {
         withCredentials: true
       });
       console.log("result:::::::", result);
-      assert.ok(result, Definer.generel_err1);
+      assert.ok(result, Definer.general_err1);
 
       console.log("state:", result.data.state);
       const top_restaurants: Restaurant[] = result.data.data;
@@ -37,7 +37,7 @@ class RestaurantApiService {
       const result = await axios.get(this.path + url, {
         withCredentials: true
       });
-      assert.ok(result, Definer.generel_err1);
+      assert.ok(result, Definer.general_err1);
 
       console.log("state:", result.data.state);
       const restaurants: Restaurant[] = result.data.data;

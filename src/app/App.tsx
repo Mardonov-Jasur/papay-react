@@ -29,6 +29,7 @@ import "../css/restaurant.css";
 import "../css/member.css";
 import "../css/help.css";
 import Car from "./screens/testCar";
+import AuthenticationModal from "./components/auth";
 
 
 function App() {
@@ -70,6 +71,7 @@ function App() {
       </Switch>
 
       <Footer/>
+      <AuthenticationModal/>
   </Router>
   );
 }

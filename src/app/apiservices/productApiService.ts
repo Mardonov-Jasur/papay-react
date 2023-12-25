@@ -18,7 +18,7 @@ class ProductApiService {
         result = await axios.post(this.path + url, data, {
           withCredentials: true
         });
-      assert.ok(result, Definer.generel_err1);
+      assert.ok(result, Definer.general_err1);
 
       console.log("state:::", result.data.state);
       const products: Product[] = result.data.data;
