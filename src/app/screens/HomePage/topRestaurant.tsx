@@ -99,7 +99,7 @@ export function TopRestaurant() {
                             fill:
                               ele?.me_liked &&
                               ele
-                                ?.me_liked[0] /*** my_favorite qopketti ******************************************************************** */
+                                ?.me_liked[0]?.my_favorite
                                 ? "red"
                                 : "white"
                           }}
