@@ -27,6 +27,13 @@ import Car from "./screens/testCar";
 import AuthenticationModal from "./components/auth";
 import { Member } from "../types/user";
 import { serverApi } from "../lib/config";
+import {
+  sweetFailureProvider,
+  sweetTopSmallSuccessAlert
+} from "../lib/sweetAlert";
+import { Definer } from "../lib/Definer";
+import MemberApiService from "./apiservices/memberApiService";
+import "../app/apiservices/verify";
 
 function App() {
   /**INITIALIZATIONS */
@@ -37,6 +44,9 @@ function App() {
   const main_path = window.location.pathname;
   const [signUpOpen, setSignUpOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
+
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
 
   useEffect(() => {
     console.log("=== useEffect: App  ===");
@@ -58,6 +68,23 @@ function App() {
   const handleLoginOpen = () => setLoginOpen(true);
   const handleLoginClose = () => setSignUpOpen(false);
 
+  const handleLogOutClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleCloseLogOut = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(null);
+  };
+  const handleLogOutRequest = async () => {
+    try {
+      const memberApiService = new MemberApiService();
+      await memberApiService.logOutRequest();
+      await sweetTopSmallSuccessAlert("success", 700, true);
+    } catch (err: any) {
+      console.log(err);
+      sweetFailureProvider(Definer.general_err1);
+    }
+  };
+
   return (
     <Router>
       {main_path == "/" ? (
@@ -65,6 +92,11 @@ function App() {
           setPath={setPath}
           handleLoginOpen={handleLoginOpen}
           handleSignUpOpen={handleSignUpOpen}
+          anchorEl={anchorEl}
+          open={open}
+          handleLogOutClick={handleLogOutClick}
+          handleCloseLogOut={handleCloseLogOut}
+          handleLogOutRequest={handleLogOutRequest}
           verifiedMemberData={verifiedMemberData}
         />
       ) : main_path.includes("/restaurant") ? (
@@ -72,6 +104,11 @@ function App() {
           setPath={setPath}
           handleLoginOpen={handleLoginOpen}
           handleSignUpOpen={handleSignUpOpen}
+          anchorEl={anchorEl}
+          open={open}
+          handleLogOutClick={handleLogOutClick}
+          handleCloseLogOut={handleCloseLogOut}
+          handleLogOutRequest={handleLogOutRequest}
           verifiedMemberData={verifiedMemberData}
         />
       ) : (
@@ -79,6 +116,11 @@ function App() {
           setPath={setPath}
           handleLoginOpen={handleLoginOpen}
           handleSignUpOpen={handleSignUpOpen}
+          anchorEl={anchorEl}
+          open={open}
+          handleLogOutClick={handleLogOutClick}
+          handleCloseLogOut={handleCloseLogOut}
+          handleLogOutRequest={handleLogOutRequest}
           verifiedMemberData={verifiedMemberData}
         />
       )}
