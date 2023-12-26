@@ -3,70 +3,88 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 export function NavbarOthers(props: any) {
-    return <div className='format_others home_navbar'>
+    return (
+      <div className="format_others home_navbar">
         <Container>
+          <Stack
+            flexDirection={"row"}
+            className="navbar_config"
+            justifyContent={"space-between"}>
+            <Box>
+              <img src="/icons/papay.svg" alt="" />
+            </Box>
             <Stack
               flexDirection={"row"}
-              className="navbar_config"
-              justifyContent={"space-between"}
-            >
-                <Box>
-                   <img src="/icons/papay.svg" alt=''/>
+              justifyContent={"space-evenly"}
+              alignItems={"center"}
+              className="navbar_links">
+              <Box className="hover-line" onClick={props.setPath}>
+                <NavLink to="/">Bosh sahifa</NavLink>
+              </Box>
+              <Box className="hover-line" onClick={props.setPath}>
+                <NavLink to="/restaurant" activeClassName="underline">
+                  Oshxona
+                </NavLink>
+              </Box>
+              <Box className="hover-line" onClick={props.setPath}>
+                <NavLink to="/orders" activeClassName="underline">
+                  Buyurtma
+                </NavLink>
+              </Box>
+              <Box className="hover-line" onClick={props.setPath}>
+                <NavLink to="/community" activeClassName="underline">
+                  Jamiyat
+                </NavLink>
+              </Box>
+              {props.verifiedMemberData ? (
+                <Box className="hover-line" onClick={props.setPath}>
+                  <NavLink to="/member-page" activeClassName="underline">
+                    Sahifam
+                  </NavLink>
                 </Box>
-                <Stack
-                  flexDirection={"row"}
-                  justifyContent={"space-evenly"}
-                  alignItems={"center"}
-                  className="navbar_links"
+              ) : null}
+              <Box className="hover-line" onClick={props.setPath}>
+                <NavLink to="/help" activeClassName="underline">
+                  Yordam
+                </NavLink>
+              </Box>
+              <Box className="hover-line">
+                <IconButton
+                  aria-label="cart"
+                  id="basic-button"
+                  aria-controls={undefined}
+                  aria-haspopup="true"
+                  aria-expanded={undefined}
+                  //  onClick={handleClick}
                 >
-                    <Box className="hover-line" onClick={props.setPath}>
-                      <NavLink to="/">Bosh sahifa</NavLink>
-                    </Box>
-                    <Box className="hover-line" onClick={props.setPath}>
-                      <NavLink to="/restaurant" activeClassName="underline">
-                        Oshxona
-                      </NavLink>
-                    </Box>
-                    <Box className="hover-line" onClick={props.setPath}>
-                      <NavLink to="/orders" activeClassName="underline">
-                        Buyurtma
-                      </NavLink>
-                    </Box>
-                    <Box className="hover-line" onClick={props.setPath}>
-                      <NavLink to="/community" activeClassName="underline">
-                        Jamiyat
-                      </NavLink>
-                    </Box>
-                    <Box className="hover-line" onClick={props.setPath}>
-                      <NavLink to="/help" activeClassName="underline">
-                        Yordam
-                      </NavLink>
-                    </Box>
-                    <Box className="hover-line">
-                      <IconButton
-                          aria-label='cart'
-                          id='basic-button'
-                          aria-controls={undefined}
-                          aria-haspopup="true"
-                          aria-expanded={undefined}
-                          //  onClick={handleClick}
-                        >
-                            <Badge badgeContent={3} color='secondary'>
-                                <img src={"/icons/shopping_cart.svg"} alt=''/>
-                            </Badge>
-                      </IconButton>
-                    </Box>
-                    <Box>
-                        <Button
-                          variant='contained'
-                          style={{color:"#ffffff", background: "#1976d2"}}
-                          onClick={props.handleLoginOpen}
-                        >
-                            KIRISH
-                        </Button>
-                    </Box>
-                </Stack>
+                  <Badge badgeContent={3} color="secondary">
+                    <img src={"/icons/shopping_cart.svg"} alt="" />
+                  </Badge>
+                </IconButton>
+              </Box>
+              {!props.verifiedMemberData ? (
+                <Box>
+                  <Button
+                    variant="contained"
+                    style={{ color: "#ffffff", background: "#1976d2" }}
+                    onClick={props.handleLoginOpen}>
+                    KIRISH
+                  </Button>
+                </Box>
+              ) : (
+                <img
+                  style={{
+                    width: "48px",
+                    height: "48px",
+                    borderRadius: "24px"
+                  }}
+                  src={props.verifiedMemberData.mb_image}
+                  alt=""
+                />
+              )}
             </Stack>
+          </Stack>
         </Container>
-    </div>
+      </div>
+    );
 }

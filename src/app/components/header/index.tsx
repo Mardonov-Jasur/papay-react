@@ -3,7 +3,12 @@ import { Box, Button, Container, IconButton, Stack } from "@mui/material";
 import Badge from "@mui/material/Badge";
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { sweetTopSmallSuccessAlert, sweetTopSuccessAlert } from "../../../lib/sweetAlert";
+import {
+  sweetTopSmallSuccessAlert,
+  sweetTopSuccessAlert
+} from "../../../lib/sweetAlert";
+import { style } from "@mui/system";
+import { width } from "dom7";
 
 export function NavbarHome(props: any) {
   /**INITIALIZATIONSS */
@@ -49,6 +54,13 @@ export function NavbarHome(props: any) {
                 Jamiyat
               </NavLink>
             </Box>
+            {props.verifiedMemberData ? (
+              <Box className="hover-line" onClick={props.setPath}>
+                <NavLink to="/member-page" activeClassName="underline">
+                  Sahifam
+                </NavLink>
+              </Box>
+            ) : null}
             <Box className="hover-line" onClick={props.setPath}>
               <NavLink to="/help" activeClassName="underline">
                 Yordam
@@ -68,14 +80,22 @@ export function NavbarHome(props: any) {
                 </Badge>
               </IconButton>
             </Box>
-            <Box>
-              <Button
-                variant="contained"
-                style={{ color: "#ffffff", background: "#1976d2" }}
-                onClick={props.handleLoginOpen}>
-                KIRISH
-              </Button>
-            </Box>
+            {!props.verifiedMemberData ? (
+              <Box>
+                <Button
+                  variant="contained"
+                  style={{ color: "#ffffff", background: "#1976d2" }}
+                  onClick={props.handleLoginOpen}>
+                  KIRISH
+                </Button>
+              </Box>
+            ) : (
+              <img
+                style={{ width: "48px", height: "48px", borderRadius: "24px" }}
+                src={props.verifiedMemberData.mb_image}
+                alt=""
+              />
+            )}
           </Stack>
         </Stack>
 
@@ -89,11 +109,10 @@ export function NavbarHome(props: any) {
             <Box className="define_restaurant">
               The Authentic Restaurant & Cafe
             </Box>
-            <Box className="timeline_service">
-              24 soat xizmatingizdamiz!
-            </Box>
+            <Box className="timeline_service">24 soat xizmatingizdamiz!</Box>
             <Box sx={{ mt: "98px" }}>
-              <Button
+              {!props.verifiedMemberData ? (
+                <Button
                 variant="contained"
                 style={{
                   width: "210px",
@@ -104,6 +123,8 @@ export function NavbarHome(props: any) {
                 onClick={props.handleSignUpOpen}>
                 RO'YHATDAN O'TISH
               </Button>
+              ) : null}
+              
             </Box>
           </Stack>
           <Stack>
