@@ -8,11 +8,7 @@ import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
 import { CardOverflow, CssVarsProvider, IconButton } from "@mui/joy";
 import { Favorite } from "@mui/icons-material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-// REDUX
-import { useSelector } from "react-redux";
-import { createSelector } from "reselect";
-import { retrieveTopRestaurants } from "./selector";
-import { Restaurant } from "../../../types/user";
+//OTHERS
 import { serverApi } from "../../../lib/config";
 import assert from "assert";
 import { Definer } from "../../../lib/Definer";
@@ -22,6 +18,11 @@ import {
 } from "../../../lib/sweetAlert";
 import MemberApiService from "../../apiservices/memberApiService";
 import { useHistory } from "react-router-dom";
+// REDUX
+import { useSelector } from "react-redux";
+import { createSelector } from "reselect";
+import { retrieveTopRestaurants } from "./selector";
+import { Restaurant } from "../../../types/user";
 
 /**REDUX SELECTOR */
 const topRestaurantRetriever = createSelector(
