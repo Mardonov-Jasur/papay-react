@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Button, Container, Stack, Rating } from "@mui/material";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
@@ -11,12 +11,74 @@ import Favorite from "@mui/icons-material/Favorite";
 import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import Badge from "@mui/material/Badge";
+import { useParams } from "react-router";
+// REDUX
+import { useDispatch, useSelector } from "react-redux";
+import { createSelector } from "reselect";
+import { retrieveChosenRestaurant, retrieveRandomRestaurants, retrieveTargetProducs, retrieveTargetRestaurants } from "./selector";
+import { Restaurant } from "../../../types/user";
+import { Dispatch } from "@reduxjs/toolkit";
+import { setRandomRestaurants, setChosenRestaurant, setTargetProducts } from "./slice";
+import { Product } from "../../../types/product";
+import { ProductSearchObj } from "../../../types/others";
+import ProductApiService from "../../apiservices/productApiService";
+import { data } from "dom7";
+import { serverApi } from "../../../lib/config";
 
-const restaurant_list = Array.from(Array(10).keys());
-const product_list = Array.from(Array(8).keys());
+
+/**REDUX SLICE */
+const actionDispatch = (dispach: Dispatch) => ({
+  setRandomRestaurants: (data: Restaurant[]) =>
+    dispach(setRandomRestaurants(data)),
+  setChosenRestaurant: (data: Restaurant) =>
+    dispach(setChosenRestaurant(data)),
+  setTargetProducts: (data: Product[]) =>
+    dispach(setTargetProducts(data))
+});
+
+/**REDUX SELECTOR */
+const randomRestaurantsRetriever = createSelector(
+  retrieveRandomRestaurants,
+  (randomRestaurants) => ({
+    randomRestaurants
+  })
+);
+const chosenRestaurantRetriever = createSelector(
+  retrieveChosenRestaurant,
+  (chosenRestaurant) => ({
+    chosenRestaurant
+  })
+);
+const targetProductsRetriever = createSelector(
+  retrieveTargetProducs,
+  (targetProducts) => ({
+    targetProducts
+  })
+);
+   
 
 export function OneRestaurant() {
-    const [value, setValue] = useState<number | null>(2);
+    /**INITIALIZATIONS */
+    let {restaurant_id} = useParams<{restaurant_id: string}> ();
+    const {setRandomRestaurants, setChosenRestaurant, setTargetProducts} = actionDispatch(useDispatch());
+    const {randomRestaurants} = useSelector(randomRestaurantsRetriever);
+    const { chosenRestaurant } = useSelector(chosenRestaurantRetriever);
+    const { targetProducts } = useSelector(targetProductsRetriever);
+    const [chosenRestaurantId, setChosenRestaurantId] = useState<string>(restaurant_id);
+     const [targetProductSearchObject, setTargetProductSearchObject] = useState<ProductSearchObj>({
+        page: 1,
+        limit: 8,
+        order: "createdAt",
+        restaurant_mb_id: restaurant_id,
+        product_collection: "dish"
+     });
+
+     useEffect(() => {
+      const productService = new ProductApiService();
+      productService.getTargetProducts(targetProductSearchObject).then((data) => setTargetProducts(data)).catch((err) => console.log(err))
+     }, [targetProductSearchObject])
+
+     /**HANDLERS */
   return (
     <div className="single_restaurant">
       <Container>
@@ -62,7 +124,7 @@ export function OneRestaurant() {
                 nextEl: ".restaurant-next",
                 prevEl: ".restaurant-prev"
               }}>
-              {restaurant_list.map((ele, index) => {
+              {/* {restaurant_list.map((ele, index) => {
                 return (
                   <SwiperSlide
                     style={{ cursor: "pointer" }}
@@ -72,7 +134,7 @@ export function OneRestaurant() {
                     <span>Kipr</span>
                   </SwiperSlide>
                 );
-              })}
+              })} */}
             </Swiper>
             <Box
               className="next_btn restaurant-next"
@@ -124,24 +186,31 @@ export function OneRestaurant() {
             </Stack>
 
             <Stack className="dish_wrapper">
-              {product_list.map((ele, index) => {
-                const size_volume = "50% sale";
+              {targetProducts.map((product: Product) => {
+                const image_path = `${serverApi}/${product.product_images[0]}`
+                const size_volume = product.product_collection === "drink" ? product.product_volume + "l" : product.product_size + " size";
 
                 return (
-                  <Box className="dish_box" key={`${index}`}>
+                  <Box className="dish_box" key={product._id}>
                     <Box
                       className="dish_img"
-                      sx={{ backgroundImage: `url("/restaurant/food-4.jpg")` }}>
+                      sx={{ backgroundImage: `url(${image_path})` }}>
                       <div className="dish_sale">{size_volume}</div>
                       <Button
                         className="like_view_btn"
                         style={{ left: "36px" }}>
-                        <Badge badgeContent={8} color="primary">
+                        <Badge badgeContent={product.product_likes} color="primary">
                           <Checkbox
                             icon={<FavoriteBorder style={{ color: "white" }} />}
-                            id={`${index}`}
+                            id={product._id}
                             checkedIcon={<Favorite style={{ color: "red" }} />}
-                            checked={true}
+                            /*@ts-ignore */
+                            checked={
+                              product?.me_liked &&
+                              product?.me_liked[0]?.my_favorite
+                                ? true
+                                : false
+                            }
                           />
                         </Badge>
                       </Button>
@@ -155,7 +224,9 @@ export function OneRestaurant() {
                       <Button
                         className="like_view_btn"
                         style={{ right: "36px" }}>
-                        <Badge badgeContent={1000} color="primary">
+                        <Badge
+                          badgeContent={product.product_views}
+                          color="primary">
                           <Checkbox
                             icon={
                               <RemoveRedEyeIcon style={{ color: "white" }} />
@@ -165,9 +236,12 @@ export function OneRestaurant() {
                       </Button>
                     </Box>
                     <Box className="dish_desc">
-                      <span className="dish_title_text">Qovurma Lag'mon</span>
+                      <span className="dish_title_text">
+                        {product.product_name}
+                      </span>
                       <div className="dish_desc_text">
-                        <MonetizationOnIcon />7
+                        <MonetizationOnIcon />
+                        {product.product_price}
                       </div>
                     </Box>
                   </Box>
@@ -208,14 +282,19 @@ export function OneRestaurant() {
                     Bu oshxonani barchangizga tavsiya qilaman!
                   </p>
                   <div className="review_stars">
-                    <Rating
+                    <StarIcon style={{ color: "#F2BD57" }} />
+                    <StarIcon style={{ color: "#F2BD57" }} />
+                    <StarIcon style={{ color: "#F2BD57" }} />
+                    <StarIcon style={{ color: "whitesmoke" }} />
+                    <StarIcon style={{ color: "whitesmoke" }} />
+                    {/* <Rating
                       name="simple-controlled"
                       value={value}
                       size="large"
                       onChange={(event, newValue) => {
                         setValue(newValue);
                       }}
-                    />
+                    /> */}
                   </div>
                 </Box>
               );
@@ -276,3 +355,7 @@ export function OneRestaurant() {
     </div>
   );
 }
+function setChosenRestaurants(data: Restaurant[]): any {
+  throw new Error("Function not implemented.");
+}
+
