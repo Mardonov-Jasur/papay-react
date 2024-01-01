@@ -12,7 +12,7 @@ class MemberApiService {
     this.path = serverApi;
   }
 
-  public async loginRequest(login_data: any) {
+  public async loginRequest(login_data: any): Promise<Member> {
     try {
       const result = await axios.post(this.path + "/login", login_data, {
         withCredentials: true
@@ -30,7 +30,7 @@ class MemberApiService {
     }
   }
 
-  public async signupRequest(signup_data: any) {
+  public async signupRequest(signup_data: any): Promise<Member> {
     try {
       const result = await axios.post(this.path + "/signup", signup_data, {
         withCredentials: true
@@ -64,7 +64,7 @@ class MemberApiService {
     }
   }
 
-  public async memberLikeTarget(data: any) {
+  public async memberLikeTarget(data: any): Promise<MemberLiken> {
     try {
       const url = "/member-liken",
         result = await axios.post(this.path + url, data, {

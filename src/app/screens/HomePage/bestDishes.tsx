@@ -10,6 +10,7 @@ import ProductApiService from "../../apiservices/productApiService";
 import { retrieveTrendProducts } from "./selector";
 import { createSelector } from "reselect";
 import { serverApi } from "../../../lib/config";
+import { useHistory } from "react-router-dom";
 
 /**REDUX SLICE */
 const actionDispatch = (dispach: Dispatch) => ({
@@ -26,10 +27,12 @@ const trendProductsRetriver = createSelector(
 
 export function BestDishes() {
   /**INITIALIZATIONS */
+    const history = useHistory();
   const { setTrendProducts } = actionDispatch(useDispatch());
   const { trendProducts } = useSelector(
     trendProductsRetriver
   ); /**   = [] shuni ozim qoshganman */
+
   useEffect(() => {
     const prodductService = new ProductApiService();
     prodductService
@@ -37,6 +40,12 @@ export function BestDishes() {
       .then((data) => setTrendProducts(data))
       .catch((err) => console.log(err));
   }, []);
+
+ /**HANDLERS */
+     const chosenDishHandler = (id: string) => {
+       history.push(`restaurant/dish/${id}`);
+     };
+
   return (
     <div className="best_dishes_frame">
       <Container>
@@ -44,8 +53,7 @@ export function BestDishes() {
           <Box className="category_title">Trenddagi Ovqatlar</Box>
           <Stack sx={{ mx: "43px" }} flexDirection={"row"}>
             {trendProducts.map((product: Product) => {
-              const image_path = `${serverApi}/${product.product_images[0]}`;
-              console.log("imageeeeeeeeeee", image_path);
+              const image_path = `${serverApi}/${product?.product_images[0]}`;
               const size_volume =
                 product.product_collection === "drink"
                   ? product.product_volume + "l"
@@ -57,7 +65,7 @@ export function BestDishes() {
                     style={{ backgroundImage: `url(${image_path})` }}>
                     <div className={"dish_sale"}>{size_volume}</div>
                     <div className={"view_btn"}>
-                      Batafsil ko'rish
+                     <div onClick={() => chosenDishHandler(product._id)}>Batafsil ko'rish</div> 
                       <img
                         src={"/icons/arrow_right.svg"}
                         alt=""
@@ -67,11 +75,11 @@ export function BestDishes() {
                   </Stack>
                   <Stack className="dish_desc">
                     <span className="dish_title_text">
-                      {product.product_name}
+                      {product?.product_name}
                     </span>
                     <span className="dish_desc_text">
                       <MonetizationOn />
-                      {product.product_price}
+                      {product?.product_price}
                     </span>
                   </Stack>
                 </Box>
