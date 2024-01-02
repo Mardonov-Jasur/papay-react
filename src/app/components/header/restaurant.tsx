@@ -40,7 +40,7 @@ export function NavbarRestaurant(props: any) {
             </Box>
             {props.verifiedMemberData ? (
               <Box className="hover-line" onClick={props.setPath}>
-                <NavLink to="/member-page" activeClassName="underline">
+                <NavLink to="/orders" activeClassName="underline">
                   Buyurtma
                 </NavLink>
               </Box>
@@ -62,7 +62,13 @@ export function NavbarRestaurant(props: any) {
                 Yordam
               </NavLink>
             </Box>
-            <Basket />
+            <Basket
+              cartItems={props.cartItems}
+              onAdd={props.onAdd}
+              onRemove={props.onRemove}
+              onDelete={props.onDelete}
+              onDeleteAll={props.onDeleteAll}
+            />
             <Box>
               {!props.verifiedMemberData ? (
                 <Box>

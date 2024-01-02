@@ -11,7 +11,7 @@ import Favorite from "@mui/icons-material/Favorite";
 import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import Badge from "@mui/material/Badge";
-import {useParams } from "react-router";
+import { useParams } from "react-router";
 import { useHistory } from "react-router-dom";
 import { Product } from "../../../types/product";
 import { ProductSearchObj } from "../../../types/others";
@@ -22,7 +22,10 @@ import RestaurantApiService from "../../apiservices/restaurantApiService";
 import assert from "assert";
 import { Definer } from "../../../lib/Definer";
 import MemberApiService from "../../apiservices/memberApiService";
-import { sweetErrorHandling, sweetTopSmallSuccessAlert } from "../../../lib/sweetAlert";
+import {
+  sweetErrorHandling,
+  sweetTopSmallSuccessAlert
+} from "../../../lib/sweetAlert";
 // REDUX
 import { useDispatch, useSelector } from "react-redux";
 import { createSelector } from "reselect";
@@ -69,7 +72,7 @@ const targetProductsRetriever = createSelector(
   })
 );
 
-export function OneRestaurant() {
+export function OneRestaurant(props: any) {
   /**INITIALIZATIONS */
   const history = useHistory();
   let { restaurant_id } = useParams<{ restaurant_id: string }>();
@@ -88,7 +91,7 @@ export function OneRestaurant() {
       restaurant_mb_id: restaurant_id,
       product_collection: "dish"
     });
-    const [productRebuild, setProductRebuild] = useState<Date>(new Date());
+  const [productRebuild, setProductRebuild] = useState<Date>(new Date());
 
   useEffect(() => {
     const restaurantService = new RestaurantApiService();
@@ -97,10 +100,10 @@ export function OneRestaurant() {
       .then((data) => setRandomRestaurants(data))
       .catch((err) => console.log(err));
 
-      restaurantService
-        .getChosenRestaurant(chosenRestaurantId)
-        .then((data) => setChosenRestaurant(data))
-        .catch((err) => console.log(err));
+    restaurantService
+      .getChosenRestaurant(chosenRestaurantId)
+      .then((data) => setChosenRestaurant(data))
+      .catch((err) => console.log(err));
 
     const productService = new ProductApiService();
     productService
@@ -113,42 +116,42 @@ export function OneRestaurant() {
   const chosenRestaurantHandler = (id: string) => {
     setChosenRestaurantId(id);
     targetProductSearchObj.restaurant_mb_id = id;
-    setTargetProductSearchObj({...targetProductSearchObj})
-    history.push(`restaurant/${id}`)
+    setTargetProductSearchObj({ ...targetProductSearchObj });
+    history.push(`restaurant/${id}`);
   };
 
   const searchCollectionHandler = (collection: string) => {
     targetProductSearchObj.page = 1;
     targetProductSearchObj.product_collection = collection;
-    setTargetProductSearchObj({...targetProductSearchObj})
-  }
-    const searchOrderHandler = (order: string) => {
-      targetProductSearchObj.page = 1;
-      targetProductSearchObj.order = order;
-      setTargetProductSearchObj({ ...targetProductSearchObj });
-    };
-    const chosenDish = (id: string) => {
-      history.push(`/restaurant/dish/${id}`)
-    };
+    setTargetProductSearchObj({ ...targetProductSearchObj });
+  };
+  const searchOrderHandler = (order: string) => {
+    targetProductSearchObj.page = 1;
+    targetProductSearchObj.order = order;
+    setTargetProductSearchObj({ ...targetProductSearchObj });
+  };
+  const chosenDish = (id: string) => {
+    history.push(`/restaurant/dish/${id}`);
+  };
 
-      const targetLikeProduct = async (e: any) => {
-        try {
-          assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+  const targetLikeProduct = async (e: any) => {
+    try {
+      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
 
-          const memberService = new MemberApiService(),
-            like_result: any = await memberService.memberLikeTarget({
-              like_ref_id: e.target.id,
-              group_type: "product"
-            });
-          assert.ok(like_result, Definer.general_err1);
+      const memberService = new MemberApiService(),
+        like_result: any = await memberService.memberLikeTarget({
+          like_ref_id: e.target.id,
+          group_type: "product"
+        });
+      assert.ok(like_result, Definer.general_err1);
 
-          await sweetTopSmallSuccessAlert("success", 700, false);
-          setProductRebuild(new Date());
-        } catch (err: any) {
-          console.log("targetLikeProduct, ERROR:", err);
-          sweetErrorHandling(err).then();
-        }
-      };
+      await sweetTopSmallSuccessAlert("success", 700, false);
+      setProductRebuild(new Date());
+    } catch (err: any) {
+      console.log("targetLikeProduct, ERROR:", err);
+      sweetErrorHandling(err).then();
+    }
+  };
 
   return (
     <div className="single_restaurant">
@@ -310,7 +313,10 @@ export function OneRestaurant() {
                         style={{ left: "36px" }}>
                         <Badge
                           badgeContent={product.product_likes}
-                          color="primary">
+                          color="primary"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                          }}>
                           <Checkbox
                             icon={<FavoriteBorder style={{ color: "white" }} />}
                             id={product._id}
@@ -326,7 +332,12 @@ export function OneRestaurant() {
                           />
                         </Badge>
                       </Button>
-                      <Button className="view_btn">
+                      <Button
+                        className="view_btn"
+                        onClick={(e) => {
+                          props.onAdd(product);
+                          e.stopPropagation();
+                        }}>
                         <img
                           src="/icons/shopping_cart.svg"
                           alt="shopping imagee"
