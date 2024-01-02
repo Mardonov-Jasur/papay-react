@@ -115,10 +115,11 @@ export function ChosenDish() {
             loop={true}
             spaceBetween={10}
             navigation={true}
-            slidesPerView={chosenProduct?.product_images.length}
+            slidesPerView={1}
             modules={[FreeMode, Navigation, Thumbs]}>
             {chosenProduct?.product_images.map((ele: string) => {
               const image_path = `${serverApi}/${ele}`;
+              console.log("imagee", image_path);
               return (
                 <SwiperSlide>
                   <img
@@ -133,7 +134,7 @@ export function ChosenDish() {
 
           <Swiper
             className="dish_swiper_2"
-            slidesPerView={3}
+            slidesPerView={chosenProduct?.product_images.length}
             spaceBetween={10}
             centeredSlides={false}
             loop={true}>
@@ -142,7 +143,7 @@ export function ChosenDish() {
               return (
                 <SwiperSlide className="dish_slider">
                   <img
-                    style={{ width: "100%", height: "100%" }}
+                    style={{ width: "160px", height: "107px" }}
                     src={image_path}
                     alt=""
                   />
