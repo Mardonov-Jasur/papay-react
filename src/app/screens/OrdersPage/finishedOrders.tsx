@@ -3,18 +3,32 @@ import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import TabPanel from "@mui/lab/TabPanel";
+// REDUX
+import {  useSelector } from "react-redux";
+import { createSelector } from "reselect";
+import { retrieveFinishedOrders } from "./selector";
 
-const pausedOrders = [
+/**REDUX SELECTOR */
+const finishedOrdersRetriever = createSelector(
+  retrieveFinishedOrders,
+  (finishedOrders) => ({
+    finishedOrders
+  })
+);
+
+const finishedOrders = [
   [1, 2, 3],
   [1, 2, 3],
   [1, 2, 3]
 ];
 
 export default function FinishedOrders(props: any) {
+  /**INITIALIZATIONS */
+  // const { finishedOrders } = useSelector(finishedOrdersRetriever);
   return (
     <TabPanel value="3">
       <Stack>
-        {pausedOrders?.map((order, index) => (
+        {finishedOrders?.map((order, index) => (
           <Box className={"order_main_box"}>
             <Box className={"order_box_scroll"}>
               {order.map((item, itemIndex) => {
@@ -46,15 +60,9 @@ export default function FinishedOrders(props: any) {
               <Box className={"total_price_box black_solid"}>
                 <Box className={"boxTotal"}>
                   <p>mahsulot:$21</p>
-                  <img
-                    src="/icons/Plus.svg"
-                    alt="plus"
-                  />
+                  <img src="/icons/Plus.svg" alt="plus" />
                   <p>yetkazish:$2</p>
-                  <img
-                    src="/icons/pause.svg"
-                    alt="pause"
-                  />
+                  <img src="/icons/pause.svg" alt="pause" />
                   <p>jami:$23</p>
                 </Box>
               </Box>

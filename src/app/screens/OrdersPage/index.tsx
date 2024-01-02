@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Container, Stack } from "@mui/material";
 import "../../../css/orders.css";
 import Tab from "@mui/material/Tab";
@@ -8,11 +8,26 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import PausedOrders from "./pausedOrders";
 import ProcessOrders from "./processOrder";
 import FinishedOrders from "./finishedOrders";
-import Marginer from "../../components/marginer";
+import { Order } from "../../../types/order";
+// REDUX
+import { useDispatch } from "react-redux";
+import { Dispatch } from "@reduxjs/toolkit";
+import { setPausedOrders, setFinishedOrders, setProcessOrders } from "./slice";
+
+//redux slice
+const actionDispatch = (dispatch: Dispatch) => ({
+  setPausedOrders: (data: Order[]) => dispatch(setPausedOrders(data)),
+  setFinishedOrders: (data: Order[]) => dispatch(setFinishedOrders(data)),
+  setProcessOrders: (data: Order[]) => dispatch(setProcessOrders(data))
+});
 
 export function OrdersPage() {
   // INITIALIZATIONSs //
   const [value, setValue] = useState("1");
+  const { setPausedOrders, setFinishedOrders, setProcessOrders } =
+    actionDispatch(useDispatch());
+
+  useEffect(() => {}, []);
 
   // Handlers //
   const handleChange = (event: any, newValue: string) => {
