@@ -14,6 +14,7 @@ import { useDispatch } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
 import { setPausedOrders, setFinishedOrders, setProcessOrders } from "./slice";
 import OrderApiService from "../../apiservices/orderApiService";
+import { Member } from "../../../types/user";
 
 //redux slice
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -22,11 +23,13 @@ const actionDispatch = (dispatch: Dispatch) => ({
   setProcessOrders: (data: Order[]) => dispatch(setProcessOrders(data))
 });
 
+
 export function OrdersPage(props: any) {
   // INITIALIZATIONSs //
   const [value, setValue] = useState("1");
   const { setPausedOrders, setFinishedOrders, setProcessOrders } =
     actionDispatch(useDispatch());
+    const verifiedMemberData: Member | null = props.verifiedMemberData;
 
   useEffect(() => {
     const orderService = new OrderApiService();
@@ -81,12 +84,12 @@ export function OrdersPage(props: any) {
           <Box className="order_info_box">
             <Box className="order_user_img" />
             <img src="/community/moto.svg" alt="picturehere" />
-            <p className="order_user_name">Zumar Tustiy</p>
-            <p className="order_user_prof">Foydalanuvchi</p>
+            <p className="order_user_name">{verifiedMemberData?.mb_nick}</p>
+            <p className="order_user_prof">{verifiedMemberData?.mb_type ?? "Foydalanuvchi"}</p>
             <Box className="marginer"></Box>
             <Box className="order_user_address">
               <LocationOnIcon style={{ color: "#2E3A59" }} />
-              <p>Baraka</p>
+              <p>{verifiedMemberData?.mb_address ?? "manzil kiritilmagan"}</p>
             </Box>
           </Box>
           <Box className="payment_box">

@@ -51,10 +51,10 @@ function App() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
-    const cartJson: any = localStorage.getItem("cart_data");
-    const current_cart: CartItem[] = JSON.parse(cartJson) ?? [];
-    const [cartItems, setCartItems] = useState<CartItem[]>(current_cart);
-    console.log("cart", cartItems); 
+  const cartJson: any = localStorage.getItem("cart_data");
+  const current_cart: CartItem[] = JSON.parse(cartJson) ?? [];
+  const [cartItems, setCartItems] = useState<CartItem[]>(current_cart);
+  console.log("cart", cartItems);
 
   useEffect(() => {
     console.log("=== useEffect: App  ===");
@@ -93,69 +93,70 @@ function App() {
     }
   };
 
-   const onAdd = (product: Product) => {
-     const exist: any = cartItems?.find(
-       (item: CartItem) => item?._id === product?._id
-     );
-     console.log("exist", exist);
+  const onAdd = (product: Product) => {
+    const exist: any = cartItems?.find(
+      (item: CartItem) => item?._id === product?._id
+    );
+    console.log("exist", exist);
 
-     if (exist) {
-       const cart_updated = cartItems?.map((item: CartItem) =>
-         item._id === product._id
-           ? { ...exist, quantity: exist.quantity + 1 }
-           : item
-       );
-       setCartItems(cart_updated);
-       localStorage.setItem("cart_data", JSON.stringify(cart_updated));
-     } else {
-       const new_item: CartItem = {
-         _id: product._id,
-         quantity: 1,
-         price: product.product_price,
-         image: product?.product_images[0],
-         name: product.product_name
-       };
-       const cart_updated = [...cartItems, { ...new_item }];
-       console.log("cart_updated", cart_updated);
+    if (exist) {
+      const cart_updated = cartItems?.map((item: CartItem) =>
+        item._id === product._id
+          ? { ...exist, quantity: exist.quantity + 1 }
+          : item
+      );
+      setCartItems(cart_updated);
+      localStorage.setItem("cart_data", JSON.stringify(cart_updated));
+    } else {
+      const new_item: CartItem = {
+        _id: product._id,
+        quantity: 1,
+        price: product.product_price,
+        image: product?.product_images[0],
+        name: product.product_name
+      };
+      const cart_updated = [...cartItems, { ...new_item }];
+      console.log("cart_updated", cart_updated);
 
-       setCartItems(cart_updated);
-       localStorage.setItem("cart_data", JSON.stringify(cart_updated));
-     }
-   };
+      setCartItems(cart_updated);
+      localStorage.setItem("cart_data", JSON.stringify(cart_updated));
+    }
+  };
 
-   const onRemove = (item: CartItem) => {
-     const item_data: any = cartItems?.find(
-       (ele: CartItem) => ele._id === item._id
-     );
-     if (item_data.quantity === 1) {
-       const filter_items: CartItem[] = cartItems.filter(  /************************ */
-         (ele) => ele._id !== item._id
-       );
-       setCartItems(filter_items);
-       localStorage.setItem("cart_data", JSON.stringify(filter_items));
-     } else {
-       const cart_updated = cartItems?.map((ele: CartItem) =>
-         ele._id === item_data._id
-           ? { ...item_data, quantity: item_data.quantity - 1 }
-           : ele
-       );
-       console.log("rem", cart_updated);
-       setCartItems(cart_updated);
-       localStorage.setItem("cart_data", JSON.stringify(cart_updated));
-     }
-   };
+  const onRemove = (item: CartItem) => {
+    const item_data: any = cartItems?.find(
+      (ele: CartItem) => ele._id === item._id
+    );
+    if (item_data.quantity === 1) {
+      const filter_items: CartItem[] = cartItems.filter(
+        /************************ */
+        (ele) => ele._id !== item._id
+      );
+      setCartItems(filter_items);
+      localStorage.setItem("cart_data", JSON.stringify(filter_items));
+    } else {
+      const cart_updated = cartItems?.map((ele: CartItem) =>
+        ele._id === item_data._id
+          ? { ...item_data, quantity: item_data.quantity - 1 }
+          : ele
+      );
+      console.log("rem", cart_updated);
+      setCartItems(cart_updated);
+      localStorage.setItem("cart_data", JSON.stringify(cart_updated));
+    }
+  };
 
-     const onDelete = (item: CartItem) => {
-       const deleted_items: CartItem[] = cartItems?.filter(
-         (vl) => vl?._id !== item?._id
-       );
-       setCartItems(deleted_items);
-       localStorage.setItem("cart_data", JSON.stringify(deleted_items));
-     };
-     const onDeleteAll = () => {
-       setCartItems([]);
-       localStorage.removeItem("cart_data");
-     };
+  const onDelete = (item: CartItem) => {
+    const deleted_items: CartItem[] = cartItems?.filter(
+      (vl) => vl?._id !== item?._id
+    );
+    setCartItems(deleted_items);
+    localStorage.setItem("cart_data", JSON.stringify(deleted_items));
+  };
+  const onDeleteAll = () => {
+    setCartItems([]);
+    localStorage.removeItem("cart_data");
+  };
 
   return (
     <Router>
@@ -223,7 +224,11 @@ function App() {
           <CommunityPage />
         </Route>
         <Route path="/orders">
-          <OrdersPage orderRebuild={orderRebuild} setOrderRebuild={setOrderRebuild} />
+          <OrdersPage
+            orderRebuild={orderRebuild}
+            setOrderRebuild={setOrderRebuild}
+            verifiedMemberData={verifiedMemberData}
+          />
         </Route>
         <Route path="/member-page">
           <MemberPage />
