@@ -18,10 +18,8 @@ export default class OrderApiService {
           withCredentials: true
         });
 
-        
-
       assert.ok(result?.data, Definer.general_err1);
-      console.log("natijaaaaaaaaaaaa:::", result.data);
+      console.log("natija:::", result.data);
       assert.ok(result?.data.state !== "fail", Definer.general_err1);
       console.log("state:::", result.data.state);
 
@@ -29,6 +27,48 @@ export default class OrderApiService {
       return order;
     } catch (err: any) {
       console.log(`ERROR ::: createOrder ${err.message}`);
+
+      throw err;
+    }
+  }
+
+  async getMyOrders(order_status: string): Promise<Order[]> {
+    try {
+      const url = `/orders?status=${order_status}`,
+        result = await axios.get(this.path + url, {
+          withCredentials: true
+        });
+
+      assert.ok(result?.data, Definer.general_err1);
+      console.log("natija:::", result.data);
+      assert.ok(result?.data.state !== "fail", Definer.general_err1);
+      console.log("state:::", result.data.state);
+
+      const orders: Order[] = result.data.data;
+      console.log("orders", orders);
+      return orders;
+    } catch (err: any) {
+      console.log(`ERROR ::: getMyOrders ${err.message}`);
+
+      throw err;
+    }
+  }
+
+   async updateOrderStatus(data: any): Promise<Order> {
+    try {
+      const url = `/orders/edit`,
+        result = await axios.post(this.path + url, data, {
+          withCredentials: true,
+        });
+
+      assert.ok(result?.data, Definer.general_err1);
+      assert.ok(result?.data.state !== "fail", Definer.general_err1);
+      console.log("state:::", result.data.state);
+
+      const orders: Order = result.data.data;
+      return orders;
+    } catch (err: any) {
+      console.log(`ERROR ::: updateStatusOfOrder ${err.message}`);
 
       throw err;
     }
