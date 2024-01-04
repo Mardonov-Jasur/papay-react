@@ -6,7 +6,7 @@ import {
   Pagination,
   PaginationItem
 } from "@mui/material";
-import React, { ChangeEvent, SyntheticEvent, useState } from "react";
+import React, { ChangeEvent, SyntheticEvent, useEffect, useState } from "react";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -14,20 +14,61 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import CommunityChats from "./communityChats";
 import { TabPanel } from "@mui/lab";
 import TargetArticles from "./targetAritcles";
-// import TargetArticles from "./targetArticles";
+import CommunityApiService from "../../apiservices/communityApiService";
+import { BoArticle, SearchArticlesObj } from "../../../types/boArticle";
+// REDUX
+import { useDispatch, useSelector } from "react-redux";
+import { createSelector } from "reselect";
+import { Restaurant } from "../../../types/user";
+import { Dispatch } from "@reduxjs/toolkit";
+import { setTargetBoArticles } from "./slice";
+import { retrieveTargetBoArticles } from "./selector";
 
-// const targetBoArticles = [1, 2, 3];
+/**REDUX SLICE */
+const actionDispatch = (dispach: Dispatch) => ({
+  setTargetBoArticles: (data: BoArticle[]) =>
+    dispach(setTargetBoArticles(data)),
+});
+
+/**REDUX SELECTOR */
+const targetBoArticlesRetriever = createSelector(
+  retrieveTargetBoArticles,
+  (targetBoArticles) => ({
+    targetBoArticles
+  })
+);
 
 export function CommunityPage(props: any) {
-  // INITIALIZATIONSs
+  // INITIALIZATIONS
+    const { setTargetBoArticles} =
+      actionDispatch(useDispatch());
+    const { targetBoArticles } = useSelector(targetBoArticlesRetriever);
   const [value, setValue] = useState("1");
+
+  const [searchArticlesObj, setSearchArticlesObj] = useState<SearchArticlesObj>(
+    {
+      bo_id: "all",
+      page: 1,
+      limit: 5
+    }
+  );
+
+  useEffect(() => {
+    const communityService = new CommunityApiService();
+    communityService
+      .getTargetArticles(searchArticlesObj)
+      .then((data) => setTargetBoArticles(data))
+      .catch((err) => console.log(err));
+  });
 
   // Handler
   const handleChange = (event: SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
 
-  const handlePagination = (event: ChangeEvent<unknown>, page: number) => {};
+  const handlePagination = (event: ChangeEvent<unknown>, page: number) => {
+    
+  };
 
   return (
     <div className="community_page">
@@ -51,16 +92,16 @@ export function CommunityPage(props: any) {
                 </Box>
                 <Stack className="article_main">
                   <TabPanel value="1">
-                    <TargetArticles targetBoArticles={[1, 2, 3, 4]} />
+                    <TargetArticles targetBoArticles={targetBoArticles} />
                   </TabPanel>
                   <TabPanel value="2">
-                    <TargetArticles targetBoArticles={[1, 2, 3]} />
+                    <TargetArticles targetBoArticles={targetBoArticles} />
                   </TabPanel>
                   <TabPanel value="3">
-                    <TargetArticles targetBoArticles={[1, 2, 3, 4, 5]} />
+                    <TargetArticles targetBoArticles={targetBoArticles} />
                   </TabPanel>
                   <TabPanel value="4">
-                    <TargetArticles targetBoArticles={[1, 2]} />
+                    <TargetArticles targetBoArticles={targetBoArticles} />
                   </TabPanel>
                 </Stack>
                 <Box className="article_bott">

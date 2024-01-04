@@ -57,7 +57,7 @@ export function OrdersPage(props: any) {
         maxWidth="lg"
         style={{ display: "flex", flexDirection: "row" }}
         sx={{ mt: "50px", mb: "50px" }}>
-        <Stack className="order_left">
+        <Stack className="order_left" >
           <TabContext value={value}>
             <Box className="order_nav_frame">
               <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
@@ -90,7 +90,7 @@ export function OrdersPage(props: any) {
                 backgroundSize: "cover",
                 borderRadius: "17px",
                 boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
-                marginTop: "-100px"
+                marginTop: "-100px",
               }}
               src={verifiedMemberData?.mb_image}
               alt="picturehere"

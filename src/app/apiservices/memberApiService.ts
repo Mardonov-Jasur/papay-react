@@ -19,7 +19,7 @@ class MemberApiService {
       });
       console.log("state::::", result.data.state);
       assert.ok(result?.data, Definer.general_err1);
-      assert.ok(result?.data?.state != "fail", result?.data?.message);
+      assert.ok(result?.data?.state !== "fail", result?.data?.message);
 
       const member: Member = result.data.data;
       localStorage.setItem("member_data", JSON.stringify(member));

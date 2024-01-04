@@ -6,7 +6,7 @@
   align-items: center;
 }
 .order_page .order_left {
-  width: 70%;
+  width: 900px;
   height: auto;
 }
 .order_page .order_right {
@@ -18,7 +18,7 @@
   flex-direction: column;
 }
 .order_page .order_right .order_info_box {
-  width: 100%;
+  width: 500px;
   padding: 20px;
   height: auto;
 
@@ -94,7 +94,7 @@
 
 /* 2.2 Card info */
 .order_page .payment_box {
-  width: 400px;
+  width: 500px;
   height: auto;
   border-radius: 16px;
   background: rgba(255, 255, 255, 0.742);
@@ -165,7 +165,7 @@
   align-items: center;
   color: #000;
   gap: 30px;
-  width: 821px;
+  width: 721px;
   margin-top: 5px;
   margin-left: 40px;
   font-family: Commissioner;
