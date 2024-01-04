@@ -26,8 +26,7 @@ import { retrieveTargetBoArticles } from "./selector";
 
 /**REDUX SLICE */
 const actionDispatch = (dispach: Dispatch) => ({
-  setTargetBoArticles: (data: BoArticle[]) =>
-    dispach(setTargetBoArticles(data)),
+  setTargetBoArticles: (data: BoArticle[]) => dispach(setTargetBoArticles(data))
 });
 
 /**REDUX SELECTOR */
@@ -40,9 +39,8 @@ const targetBoArticlesRetriever = createSelector(
 
 export function CommunityPage(props: any) {
   // INITIALIZATIONS
-    const { setTargetBoArticles} =
-      actionDispatch(useDispatch());
-    const { targetBoArticles } = useSelector(targetBoArticlesRetriever);
+  const { setTargetBoArticles } = actionDispatch(useDispatch());
+  const { targetBoArticles } = useSelector(targetBoArticlesRetriever);
   const [value, setValue] = useState("1");
 
   const [searchArticlesObj, setSearchArticlesObj] = useState<SearchArticlesObj>(
@@ -59,15 +57,32 @@ export function CommunityPage(props: any) {
       .getTargetArticles(searchArticlesObj)
       .then((data) => setTargetBoArticles(data))
       .catch((err) => console.log(err));
-  });
+  }, [searchArticlesObj]);
 
   // Handler
-  const handleChange = (event: SyntheticEvent, newValue: string) => {
+  const handleChange = (event: any, newValue: string) => {
+    searchArticlesObj.page = 1;
+    switch (newValue) {
+      case "1":
+        searchArticlesObj.bo_id = "all";
+        break;
+      case "2":
+        searchArticlesObj.bo_id = "celebrity";
+        break;
+      case "3":
+        searchArticlesObj.bo_id = "evaluation";
+        break;
+      case "4":
+        searchArticlesObj.bo_id = "story";
+        break;
+    }
+    setSearchArticlesObj({ ...searchArticlesObj });
     setValue(newValue);
   };
 
-  const handlePagination = (event: ChangeEvent<unknown>, page: number) => {
-    
+  const handlePagination = (event: any, value: number) => {
+    searchArticlesObj.page = value;
+    setSearchArticlesObj({ ...searchArticlesObj });
   };
 
   return (
