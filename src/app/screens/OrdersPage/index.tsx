@@ -23,13 +23,12 @@ const actionDispatch = (dispatch: Dispatch) => ({
   setProcessOrders: (data: Order[]) => dispatch(setProcessOrders(data))
 });
 
-
 export function OrdersPage(props: any) {
   // INITIALIZATIONSs //
   const [value, setValue] = useState("1");
   const { setPausedOrders, setFinishedOrders, setProcessOrders } =
     actionDispatch(useDispatch());
-    const verifiedMemberData: Member | null = props.verifiedMemberData;
+  const verifiedMemberData: Member | null = props.verifiedMemberData;
 
   useEffect(() => {
     const orderService = new OrderApiService();
@@ -83,9 +82,23 @@ export function OrdersPage(props: any) {
         <Stack className="order_right">
           <Box className="order_info_box">
             <Box className="order_user_img" />
-            <img src="/community/moto.svg" alt="picturehere" />
+            <img
+              className="user_img"
+              style={{
+                width: "117px",
+                height: "112px",
+                backgroundSize: "cover",
+                borderRadius: "17px",
+                boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
+                marginTop: "-100px"
+              }}
+              src={verifiedMemberData?.mb_image}
+              alt="picturehere"
+            />
             <p className="order_user_name">{verifiedMemberData?.mb_nick}</p>
-            <p className="order_user_prof">{verifiedMemberData?.mb_type ?? "Foydalanuvchi"}</p>
+            <p className="order_user_prof">
+              {verifiedMemberData?.mb_type ?? "Foydalanuvchi"}
+            </p>
             <Box className="marginer"></Box>
             <Box className="order_user_address">
               <LocationOnIcon style={{ color: "#2E3A59" }} />
