@@ -75,7 +75,7 @@ const chosenSingleBoArticlesRetriever = createSelector(
   })
 );
 
-const VisitMyPage = () => {
+const VisitMyPage = (props: any) => {
   // INITIALIZATIONS
   const {
     setChosenMember,

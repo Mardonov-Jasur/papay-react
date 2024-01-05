@@ -65,20 +65,20 @@ const chosenSingleBoArticlesRetriever = createSelector(
   })
 );
 
-const VisitOtherPage = () => {
+const VisitOtherPage = (props: any) => {
   // INITIALIZATIONSs
-   const {
-     setChosenMember,
-     setChosenMemberBoArticles,
-     setChosenSingleBoArticle
-   } = actionDispatch(useDispatch());
-   const { chosenMember } = useSelector(chosenMemberRetriever);
-   const { chosenMemberBoArticles } = useSelector(
-     chosenMemberBoArticlesRetriever
-   );
-   const { chosenSingleBoArticle } = useSelector(
-     chosenSingleBoArticlesRetriever
-   );
+  const {
+    setChosenMember,
+    setChosenMemberBoArticles,
+    setChosenSingleBoArticle
+  } = actionDispatch(useDispatch());
+  const { chosenMember } = useSelector(chosenMemberRetriever);
+  const { chosenMemberBoArticles } = useSelector(
+    chosenMemberBoArticlesRetriever
+  );
+  const { chosenSingleBoArticle } = useSelector(
+    chosenSingleBoArticlesRetriever
+  );
   const [value, setValue] = useState("4");
 
   // Handler
