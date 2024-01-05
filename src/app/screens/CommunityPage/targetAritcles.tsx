@@ -6,8 +6,31 @@ import { Typography } from "@mui/joy";
 import moment from "moment";
 import { BoArticle } from "../../../types/boArticle";
 import { serverApi } from "../../../lib/config";
+import assert from "assert";
+import MemberApiService from "../../apiservices/memberApiService";
+import { sweetErrorHandling, sweetTopSmallSuccessAlert } from "../../../lib/sweetAlert";
+import { Definer } from "../../../lib/Definer";
 
 const TargetArticles = (props: any) => {
+  const { setArticlesRebuild } = props;
+  /**HANDLERS */
+   const targetLikeHandler = async (e: any) => {
+     try {
+       assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+       const memberService = new MemberApiService();
+       const id = e.target.id,
+         like_result: any = await memberService.memberLikeTarget({
+           like_ref_id: id,
+           group_type: "community"
+         });
+       assert.ok(like_result, Definer.general_err1);
+       await sweetTopSmallSuccessAlert("success", 700, false);
+       props.setArticlesRebuild(new Date());
+     } catch (err: any) {
+       console.log("targetLikeTop, ERROR", err);
+       sweetErrorHandling(err).then();
+     }
+   };
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
   return (
     <Stack>
@@ -47,9 +70,12 @@ const TargetArticles = (props: any) => {
                     fontWeight: "md",
                     color: "text.secondary",
                     alignItems: "center",
-                    display: "flex"
+                    display: "flex",
+                    marginLeft: "10px"
                   }}>
-                  {article.art_likes}{""}
+                  <div>{article.art_views}</div>
+
+                  {""}
                   <Visibility
                     sx={{ fontSize: 20, marginLeft: "5px", color: "white" }}
                   />
@@ -63,10 +89,25 @@ const TargetArticles = (props: any) => {
                     alignItems: "center",
                     display: "flex"
                   }}>
-                  <div>{article.art_views}</div>
-                  <Favorite
-                    sx={{ fontSize: 20, marginLeft: "5px", color: "white" }}
-                  />
+                  {article.art_likes}
+                  <div
+                    style={{
+                      marginTop: "-20px",
+                      marginBottom: "-20px"
+                    }}>
+                    <Checkbox
+                      {...label}
+                      icon={<Favorite style={{ fill: "grey" }} />}
+                      checkedIcon={<FavoriteBorder style={{ fill: "red" }} />}
+                      id={article?._id}
+                      onClick={targetLikeHandler}
+                      checked={
+                        article?.me_liked && article?.me_liked[0]?.my_favorite
+                          ? true
+                          : false
+                      }
+                    />
+                  </div>
                 </Typography>
               </Box>
             </Box>
@@ -78,3 +119,7 @@ const TargetArticles = (props: any) => {
 };
 
 export default TargetArticles;
+function setArticlesRebuild(arg0: Date) {
+  throw new Error("Function not implemented.");
+}
+
