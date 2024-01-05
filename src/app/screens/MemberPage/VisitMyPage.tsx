@@ -29,10 +29,67 @@ import TViewer from "./TViewer";
 import TuiEditor from "./TuiEditor";
 // import TuiEditor from "./TuiEditor";
 // import TViewer from "./TViewer";
+// REDUX
+import { useDispatch, useSelector } from "react-redux";
+import { createSelector } from "reselect";
+import { Member, Restaurant } from "../../../types/user";
+import { Dispatch } from "@reduxjs/toolkit";
+import {
+  retrieveChosenMember,
+  retrieveChosenMemberBoArticles,
+  retrieveChosenSingleBoArticles
+} from "./selector";
+import {
+  setChosenMember,
+  setChosenMemberBoArticles,
+  setChosenSingleBoArticles
+} from "./slice";
+import { BoArticle } from "../../../types/boArticle";
+
+/**REDUX SLICE */
+const actionDispatch = (dispatch: Dispatch) => ({
+  setChosenMember: (data: Member) => dispatch(setChosenMember(data)),
+  setChosenMemberBoArticles: (data: BoArticle[]) =>
+    dispatch(setChosenMemberBoArticles(data)),
+  setChosenSingleBoArticle: (data: BoArticle) =>
+    dispatch(setChosenSingleBoArticles(data))
+});
+
+/**REDUX SELECTOR */
+const chosenMemberRetriever = createSelector(
+  retrieveChosenMember,
+  (chosenMember) => ({
+    chosenMember
+  })
+);
+const chosenMemberBoArticlesRetriever = createSelector(
+  retrieveChosenMemberBoArticles,
+  (chosenMemberBoArticles) => ({
+    chosenMemberBoArticles
+  })
+);
+const chosenSingleBoArticlesRetriever = createSelector(
+  retrieveChosenSingleBoArticles,
+  (chosenSingleBoArticle) => ({
+    chosenSingleBoArticle
+  })
+);
 
 const VisitMyPage = () => {
-  // INITIALIZATIONSs
-  const [value, setValue] = useState("5");
+  // INITIALIZATIONS
+  const {
+    setChosenMember,
+    setChosenMemberBoArticles,
+    setChosenSingleBoArticle
+  } = actionDispatch(useDispatch());
+  const { chosenMember } = useSelector(chosenMemberRetriever);
+  const { chosenMemberBoArticles } = useSelector(
+    chosenMemberBoArticlesRetriever
+  );
+  const { chosenSingleBoArticle } = useSelector(
+    chosenSingleBoArticlesRetriever
+  );
+  const [value, setValue] = useState("1");
 
   // Handler
   const handleChange = (event: any, newValue: string) => {
