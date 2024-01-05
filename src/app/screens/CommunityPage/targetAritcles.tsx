@@ -97,8 +97,8 @@ const TargetArticles = (props: any) => {
                     }}>
                     <Checkbox
                       {...label}
-                      icon={<Favorite style={{ fill: "grey" }} />}
-                      checkedIcon={<FavoriteBorder style={{ fill: "red" }} />}
+                      icon={<FavoriteBorder style={{ fill: "white" }} />}
+                      checkedIcon={<Favorite style={{ fill: "red" }} />}
                       id={article?._id}
                       onClick={targetLikeHandler}
                       checked={
