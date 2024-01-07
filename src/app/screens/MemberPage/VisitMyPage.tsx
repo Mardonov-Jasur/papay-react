@@ -7,7 +7,7 @@ import {
   PaginationItem,
   Button
 } from "@mui/material";
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -44,7 +44,10 @@ import {
   setChosenMemberBoArticles,
   setChosenSingleBoArticles
 } from "./slice";
-import { BoArticle } from "../../../types/boArticle";
+import { BoArticle, SearchMemberArticlesObj } from "../../../types/boArticle";
+import { sweetErrorHandling, sweetFailureProvider } from "../../../lib/sweetAlert";
+import CommunityApiService from "../../apiservices/communityApiService";
+import MemberApiService from "../../apiservices/memberApiService";
 
 /**REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -77,6 +80,7 @@ const chosenSingleBoArticlesRetriever = createSelector(
 
 const VisitMyPage = (props: any) => {
   // INITIALIZATIONS
+  const {verifiedMemberData} = props;
   const {
     setChosenMember,
     setChosenMemberBoArticles,
@@ -86,16 +90,52 @@ const VisitMyPage = (props: any) => {
   const { chosenMemberBoArticles } = useSelector(
     chosenMemberBoArticlesRetriever
   );
+  console.log("membeeeeer", chosenMemberBoArticles);
   const { chosenSingleBoArticle } = useSelector(
     chosenSingleBoArticlesRetriever
   );
   const [value, setValue] = useState("1");
+  const [articlesRebuild, setArticlesRebuild] = useState<Date>(new Date());
+  const [memberArticleSearchObj, setMemberArticleSearchObj] =
+    useState<SearchMemberArticlesObj>({ mb_id: "none", page: 1, limit: 5 });
+
+  useEffect(() => {
+    if (!localStorage.getItem("member_data")) {
+      sweetFailureProvider("Please login first", true, true);
+    }
+
+    const communityService = new CommunityApiService();
+    const memberService = new MemberApiService();
+
+    communityService
+      .getMemberCommunityArticles(memberArticleSearchObj)
+      .then((data) => setChosenMemberBoArticles(data))
+      .catch((err) => console.log(err));
+
+    memberService
+      .getChosenMember(verifiedMemberData?._id)
+      .then((data) => setChosenMember(data))
+      .catch((err) => console.log(err));
+  }, [memberArticleSearchObj, articlesRebuild]);
 
   // Handler
   const handleChange = (event: any, newValue: string) => {
     setValue(newValue);
   };
-  const handlePagination = (event: ChangeEvent<unknown>, page: number) => {};
+  const handlePaginationChange = (event: any, value: number) => {
+    memberArticleSearchObj.page = value;
+    setMemberArticleSearchObj({...memberArticleSearchObj})
+  };
+
+  const renderChosenArticleHandler = async (art_id: string) => {
+    try{
+       const communityService = new CommunityApiService();
+      communityService.getChosenArticle(art_id).then(data => setChosenSingleBoArticle(data)).catch((err) => console.log(err))
+    } catch(err: any) {
+      console.log(err)
+      sweetErrorHandling(err).then()
+    }
+  }
 
   return (
     <div className="my_page">
@@ -107,7 +147,11 @@ const VisitMyPage = (props: any) => {
                 <TabPanel value="1">
                   <Box className="menu_name">Mening Maqolalarim</Box>
                   <Box className="menu_content">
-                    <MemberPosts />
+                    <MemberPosts
+                      chosenMemberBoArticles={chosenMemberBoArticles}
+                      renderChosenArticleHandler={renderChosenArticleHandler}
+                      setArticlesRebuild={setArticlesRebuild}
+                    />
                     <Stack className="pagination">
                       <Box className="bottom_box">
                         <Pagination
@@ -123,7 +167,7 @@ const VisitMyPage = (props: any) => {
                               color="secondary"
                             />
                           )}
-                          onChange={handlePagination}
+                          onChange={handlePaginationChange}
                         />
                       </Box>
                     </Stack>
