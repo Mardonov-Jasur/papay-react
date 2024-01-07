@@ -8,7 +8,7 @@ const TViewer = (props: any) => {
 
   return (
     <Stack className="tviewer">
-      <Viewer ref={editorRef} initialValue={props.text} />
+      <Viewer ref={editorRef} initialValue={props.chosenSingleBoArticles?.art_content} />
     </Stack>
   );
 };

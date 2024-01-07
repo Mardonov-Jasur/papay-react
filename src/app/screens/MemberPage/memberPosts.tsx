@@ -46,8 +46,8 @@ const MemberPosts = (props: any) => {
         return (
           <Link
             className="all_article_box"
-            style={{ height: "180px" }}
-            href={``}>
+            style={{ height: "180px", cursor: "pointer" }}
+            onClick= {() => renderChosenArticleHandler(article?._id)}>
             <Box className="all_article_img" style={{ height: "180px" }}>
               <img src={image_path} alt="" />
             </Box>

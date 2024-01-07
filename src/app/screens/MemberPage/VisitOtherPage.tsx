@@ -41,7 +41,7 @@ const actionDispatch = (dispatch: Dispatch) => ({
   setChosenMember: (data: Member) => dispatch(setChosenMember(data)),
   setChosenMemberBoArticles: (data: BoArticle[]) =>
     dispatch(setChosenMemberBoArticles(data)),
-  setChosenSingleBoArticle: (data: BoArticle) =>
+  setChosenSingleBoArticles: (data: BoArticle) =>
     dispatch(setChosenSingleBoArticles(data))
 });
 
@@ -70,7 +70,7 @@ const VisitOtherPage = (props: any) => {
   const {
     setChosenMember,
     setChosenMemberBoArticles,
-    setChosenSingleBoArticle
+    setChosenSingleBoArticles
   } = actionDispatch(useDispatch());
   const { chosenMember } = useSelector(chosenMemberRetriever);
   const { chosenMemberBoArticles } = useSelector(

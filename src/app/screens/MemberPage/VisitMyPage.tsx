@@ -45,7 +45,10 @@ import {
   setChosenSingleBoArticles
 } from "./slice";
 import { BoArticle, SearchMemberArticlesObj } from "../../../types/boArticle";
-import { sweetErrorHandling, sweetFailureProvider } from "../../../lib/sweetAlert";
+import {
+  sweetErrorHandling,
+  sweetFailureProvider
+} from "../../../lib/sweetAlert";
 import CommunityApiService from "../../apiservices/communityApiService";
 import MemberApiService from "../../apiservices/memberApiService";
 
@@ -54,7 +57,7 @@ const actionDispatch = (dispatch: Dispatch) => ({
   setChosenMember: (data: Member) => dispatch(setChosenMember(data)),
   setChosenMemberBoArticles: (data: BoArticle[]) =>
     dispatch(setChosenMemberBoArticles(data)),
-  setChosenSingleBoArticle: (data: BoArticle) =>
+  setChosenSingleBoArticles: (data: BoArticle) =>
     dispatch(setChosenSingleBoArticles(data))
 });
 
@@ -73,25 +76,24 @@ const chosenMemberBoArticlesRetriever = createSelector(
 );
 const chosenSingleBoArticlesRetriever = createSelector(
   retrieveChosenSingleBoArticles,
-  (chosenSingleBoArticle) => ({
-    chosenSingleBoArticle
+  (chosenSingleBoArticles) => ({
+    chosenSingleBoArticles
   })
 );
 
 const VisitMyPage = (props: any) => {
   // INITIALIZATIONS
-  const {verifiedMemberData} = props;
+  const { verifiedMemberData } = props;
   const {
     setChosenMember,
     setChosenMemberBoArticles,
-    setChosenSingleBoArticle
+    setChosenSingleBoArticles
   } = actionDispatch(useDispatch());
   const { chosenMember } = useSelector(chosenMemberRetriever);
   const { chosenMemberBoArticles } = useSelector(
     chosenMemberBoArticlesRetriever
   );
-  console.log("membeeeeer", chosenMemberBoArticles);
-  const { chosenSingleBoArticle } = useSelector(
+  const { chosenSingleBoArticles } = useSelector(
     chosenSingleBoArticlesRetriever
   );
   const [value, setValue] = useState("1");
@@ -109,7 +111,9 @@ const VisitMyPage = (props: any) => {
 
     communityService
       .getMemberCommunityArticles(memberArticleSearchObj)
-      .then((data) => setChosenMemberBoArticles(data))
+      .then((data) => {
+        setChosenMemberBoArticles(data);
+      })
       .catch((err) => console.log(err));
 
     memberService
@@ -124,18 +128,24 @@ const VisitMyPage = (props: any) => {
   };
   const handlePaginationChange = (event: any, value: number) => {
     memberArticleSearchObj.page = value;
-    setMemberArticleSearchObj({...memberArticleSearchObj})
+    setMemberArticleSearchObj({ ...memberArticleSearchObj });
   };
 
   const renderChosenArticleHandler = async (art_id: string) => {
-    try{
-       const communityService = new CommunityApiService();
-      communityService.getChosenArticle(art_id).then(data => setChosenSingleBoArticle(data)).catch((err) => console.log(err))
-    } catch(err: any) {
-      console.log(err)
-      sweetErrorHandling(err).then()
+    try {
+      const communityService = new CommunityApiService();
+      communityService
+        .getChosenArticle(art_id)
+        .then((data) => {
+          setChosenSingleBoArticles(data);
+          setValue("5");
+        })
+        .catch((err) => console.log(err));
+    } catch (err: any) {
+      console.log(err);
+      sweetErrorHandling(err).then();
     }
-  }
+  };
 
   return (
     <div className="my_page">
@@ -155,8 +165,8 @@ const VisitMyPage = (props: any) => {
                     <Stack className="pagination">
                       <Box className="bottom_box">
                         <Pagination
-                          count={3}
-                          page={1}
+                          count={memberArticleSearchObj.limit}
+                          page={memberArticleSearchObj.page}
                           renderItem={(item) => (
                             <PaginationItem
                               components={{
@@ -194,7 +204,7 @@ const VisitMyPage = (props: any) => {
                 <TabPanel value="5">
                   <Box className="menu_name">Tanlangan Maqola</Box>
                   <Box className="menu_content" style={{ height: "500px" }}>
-                    <TViewer text={"<div>Hello</div>"} />
+                    <TViewer chosenSingleBoArticles={chosenSingleBoArticles} />
                   </Box>
                 </TabPanel>
                 <TabPanel value="6">
