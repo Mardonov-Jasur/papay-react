@@ -1,5 +1,14 @@
-import { Avatar, Box, Button, Stack } from "@mui/material";
-import React from "react";
+import {
+  Avatar,
+  Box,
+  Button,
+  Pagination,
+  PaginationItem,
+  Stack
+} from "@mui/material";
+import React, { useEffect, useState } from "react";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 // REDUX
 import { useDispatch, useSelector } from "react-redux";
 import { createSelector } from "reselect";
@@ -7,44 +16,86 @@ import { Restaurant } from "../../../types/user";
 import { Dispatch } from "@reduxjs/toolkit";
 import { retrieveMemberFollowers } from "./selector";
 import { setMemberFollowers } from "./slice";
-import { Follower } from "../../../types/follow";
+import { FollowSearchObj, Follower } from "../../../types/follow";
+import FollowApiService from "../../apiservices/followApiService";
+import { serverApi } from "../../../lib/config";
+import { Definer } from "../../../lib/Definer";
+import assert from "assert";
+import {
+  sweetErrorHandling,
+  sweetTopSmallSuccessAlert
+} from "../../../lib/sweetAlert";
 
 /**REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
-  setMemberFollowers: (data: Follower[]) => dispatch(setMemberFollowers(data)),
+  setMemberFollowers: (data: Follower[]) => dispatch(setMemberFollowers(data))
 });
 
 /**REDUX SELECTOR */
 const memberFollowersRetriever = createSelector(
   retrieveMemberFollowers,
   (memberFollowers) => ({
-    memberFollowers,
+    memberFollowers
   })
 );
 
-const followers = [
-  { mb_nick: "Botir", following: true },
-  { mb_nick: "Jonibek", following: false },
-  { mb_nick: "Behruz", following: true }
-];
-
-const MemberFollowers = (prop: any) => {
+const MemberFollowers = (props: any) => {
+  const { followRebuild, setFollowRebuild, mb_id } = props;
   // INITIALIZATIONS
   const { setMemberFollowers } = actionDispatch(useDispatch());
   const { memberFollowers } = useSelector(memberFollowersRetriever);
+  const [followersSearchObj, setFollowersSearchObj] = useState<FollowSearchObj>(
+    { page: 1, limit: 5, mb_id: mb_id }
+  );
+
+  useEffect(() => {
+    const followService = new FollowApiService();
+    followService
+      .getMemberFollowers(followersSearchObj)
+      .then((data) => setMemberFollowers(data))
+      .catch((err) => console.log(err));
+  }, [followersSearchObj, followRebuild]);
+
+  /**HANDLER */
+  const subscribeHandler = async (e: any, id: string) => {
+    try {
+      e.stopPropagation();
+      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+
+      const followService = new FollowApiService();
+      await followService.subscribe(id);
+
+      await sweetTopSmallSuccessAlert("subscribed successfully", 700, false);
+      setFollowRebuild(!followRebuild);
+    } catch (err: any) {
+      console.log(err);
+      sweetErrorHandling(err).then();
+    }
+  };
+  const handlePaginationChange = (event: any, value: number) => {
+    followersSearchObj.page = value;
+    setFollowersSearchObj({ ...followersSearchObj });
+  };
   return (
     <Stack className="follower_content">
-      {followers.map((follower) => {
-        const image = "/community/chef.jpg";
+      {memberFollowers.map((follower: Follower) => {
+        const image_path = follower?.subscriber_member_data?.mb_image
+          ? `${serverApi}/${follower.subscriber_member_data.mb_image}`
+          : "/auth/user_3.webp";
         return (
           <Box className="follow_box">
-            <Avatar alt="" src={image} className="follower_img" />
+            <Avatar alt="" src={image_path} className="follower_img" />
             <Box className="user_prof">
-              <span className="user">USER</span>
-              <span className="name">{follower.mb_nick}</span>
+              <span className="user">
+                {follower?.subscriber_member_data?.mb_type}
+              </span>
+              <span className="name">
+                {follower?.subscriber_member_data?.mb_nick}
+              </span>
             </Box>
-            {prop.actions_enabled &&
-              (follower.following ? (
+            {props.actions_enabled &&
+              (follower?.me_followed &&
+              follower?.me_followed[0]?.my_following ? (
                 <Button
                   className="following_already"
                   variant="contained"
@@ -55,7 +106,6 @@ const MemberFollowers = (prop: any) => {
                 <Button
                   className="following_btn"
                   variant="contained"
-                  disabled
                   startIcon={
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -74,13 +124,35 @@ const MemberFollowers = (prop: any) => {
                         stroke="white"
                       />
                     </svg>
-                  }>
+                  }
+                  onClick={(e) => subscribeHandler(e, follower?.subscriber_id)}>
                   Follow back
                 </Button>
               ))}
           </Box>
         );
       })}
+      <Stack className="pagination">
+        <Box className="bottom_box">
+          <Pagination
+            count={
+              followersSearchObj.page >= 3 ? followersSearchObj.page + 1 : 3
+            }
+            page={followersSearchObj.page}
+            renderItem={(item) => (
+              <PaginationItem
+                components={{
+                  previous: ArrowBackIcon,
+                  next: ArrowForwardIcon
+                }}
+                {...item}
+                color="secondary"
+              />
+            )}
+            onChange={handlePaginationChange}
+          />
+        </Box>
+      </Stack>
     </Stack>
   );
 };
