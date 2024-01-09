@@ -40,6 +40,12 @@
   height: 100px;
   margin-top: 10px;
 }
+.order_info_box .order_user_img img {
+  border-radius: 20px;
+  width: 100px;
+  height: 100px;
+  margin-top: 10px;
+}
 .order_info_box .order_user_img .user_img {
   width: 117px;
   height: 112px;

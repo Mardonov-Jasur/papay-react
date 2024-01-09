@@ -44,7 +44,7 @@ const TuiEditor = (props: any) => {
     try {
       const communityService = new CommunityApiService();
       const image_name = await communityService.uploadImageToServer(image);
-
+          console.log("mage-nameeeee", image_name);
       communityArticleData.art_image = image_name;
       setCommunityArticleData({ ...communityArticleData });
 

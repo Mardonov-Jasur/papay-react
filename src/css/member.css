@@ -102,7 +102,7 @@
 
 .my_page .info_box_item .order_user_img .svg {
   position: absolute;
-  bottom: 3%;
+  bottom: 0;
   right: 0%;
   width: 30px;
   height: 30px;

@@ -20,7 +20,7 @@ class CommunityApiService {
     try {
       let formData = new FormData();
       formData.append("community_image", image);
-      console.log(formData);
+      console.log("imageeeee", image);
       const result = await axios(`${this.path}/community/image`, {
         method: "POST",
         data: formData,
@@ -28,6 +28,7 @@ class CommunityApiService {
           "Content-Type": "multipart/form-data"
         }
       });
+       console.log("resuuuuult", result);
 
       assert.ok(result?.data, Definer.general_err1);
       assert.ok(result?.data.state !== "fail", Definer.general_err1);
