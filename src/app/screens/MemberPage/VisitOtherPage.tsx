@@ -78,7 +78,7 @@ const chosenSingleBoArticlesRetriever = createSelector(
 );
 
 const VisitOtherPage = (props: any) => {
-  // INITIALIZATIONS
+  /**INITIALIZATIONS */
   const history = useHistory();
   const { verifiedMemberData, chosen_mb_id, chosen_art_id } = props;
   const {
@@ -137,7 +137,7 @@ const VisitOtherPage = (props: any) => {
       .catch((err) => console.log(err));
   }, [verifyMemberData, chosen_mb_id, followRebuild]);
 
-  // Handler
+  /**HANDLERS */
   const handleChange = (event: any, newValue: string) => {
     setValue(newValue);
   };
@@ -176,20 +176,20 @@ const VisitOtherPage = (props: any) => {
     }
   };
 
-   const unSubscribeHandler = async (e: any) => {
-     try {
-       assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+  const unSubscribeHandler = async (e: any) => {
+    try {
+      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
 
-       const followingService = new FollowApiService();
-       await followingService.unsubscribe(e.target.value);
+      const followingService = new FollowApiService();
+      await followingService.unsubscribe(e.target.value);
 
-       await sweetTopSmallSuccessAlert("unsubscribed successfully", 700, false);
-       setFollowRebuild(!followRebuild);
-     } catch (err: any) {
-       console.log(err);
-       sweetErrorHandling(err).then();
-     }
-   };
+      await sweetTopSmallSuccessAlert("unsubscribed successfully", 700, false);
+      setFollowRebuild(!followRebuild);
+    } catch (err: any) {
+      console.log(err);
+      sweetErrorHandling(err).then();
+    }
+  };
 
   return (
     <div className="my_page">
