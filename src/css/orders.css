@@ -36,8 +36,9 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 117px;
-  height: 112px;
+  width: 100px;
+  height: 100px;
+  margin-top: 10px;
 }
 .order_info_box .order_user_img .user_img {
   width: 117px;
@@ -47,13 +48,13 @@
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
-.order_right .info_box_item .order_user_img .svg {
+/* .order_right .info_box_item .order_user_img .svg {
   position: absolute;
   width: 30px;
   height: 30px;
   bottom: 0;
   right: 0;
-}
+} */
 
 .order_page .order_info_box .order_user_name {
   width: 238px;

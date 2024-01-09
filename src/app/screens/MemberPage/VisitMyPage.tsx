@@ -51,6 +51,7 @@ import {
 } from "../../../lib/sweetAlert";
 import CommunityApiService from "../../apiservices/communityApiService";
 import MemberApiService from "../../apiservices/memberApiService";
+import { serverApi } from "../../../lib/config";
 
 /**REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -240,8 +241,11 @@ const VisitMyPage = (props: any) => {
                     sx={{ position: "relative" }}
                     className="order_user_img">
                     <img
-                      className="big_svg"
-                      src="/community/moto1.jpg"
+                      src={
+                        chosenMember?.mb_image
+                          ? `${serverApi}/${chosenMember?.mb_image}`
+                          : "/auth/user_3.webp"
+                      }
                       alt=""
                     />
                     <img

@@ -54,7 +54,7 @@ const MemberFollowings = (props: any) => {
 
         const followService = new FollowApiService();
         const  bir = await  followService.unsubscribe(id);
-        console.log("auuuuuuuuuffffff", bir)
+        console.log("ddddddddffffff", bir)
 
         setFollowRebuild(!followRebuild);
         await sweetTopSmallSuccessAlert(
@@ -77,9 +77,9 @@ const MemberFollowings = (props: any) => {
   return (
     <Stack className="follower_content">
       {memberFollowings.map((following: Following) => {
-        const image_path = following?.follow_member_data?.mb_image
-          ? `${serverApi}/${following.follow_member_data.mb_image}`
-          : "/auth/user_3.webp";
+         const image_path = following?.follow_member_data?.mb_image
+           ? `${serverApi}/${following.follow_member_data.mb_image}`
+           : "/auth/user_3.webp";
         return (
           <Box className="follow_box">
             <Avatar alt="" src={image_path} className="follower_img" />

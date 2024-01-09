@@ -53,8 +53,8 @@ export function MemberPage(props: MemberPageProps) {
   const member = useRouteMatch();
   const query = useQuery();
   console.log("freeeeeee", query.get("test"))
-  // const chosen_mb_id: string | null = query.get("mb_id") ?? null;
-  // const chosen_art_id: string | null = query.get("art_id") ?? null;
+  const chosen_mb_id: string | null = query.get("mb_id") ?? null;
+  const chosen_art_id: string | null = query.get("art_id") ?? null;
 
   return (
     <div className="member_page">
@@ -62,8 +62,8 @@ export function MemberPage(props: MemberPageProps) {
         <Route path={`${member.path}/other`}>
           <VisitOtherPage
             verifiedMemberData={verifiedMemberData}
-            // chosen_mb_id={chosen_mb_id}
-            // chosen_art_id={chosen_art_id}
+            chosen_mb_id={chosen_mb_id}
+            chosen_art_id={chosen_art_id}
           />
         </Route>
         <Route path={`${member.path}`}>

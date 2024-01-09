@@ -106,8 +106,9 @@
   right: 0%;
   width: 30px;
   height: 30px;
-  border-radius: 37px;
-  background: lightgray 50% / cover no-repeat
+  border-radius: 35px;
+  background: lightgray 50% / cover no-repeat;
+  z-index: 1;
 }
 
 .my_page .info_box_item .order_user_info {
