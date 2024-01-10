@@ -80,7 +80,7 @@ const chosenSingleBoArticlesRetriever = createSelector(
 const VisitOtherPage = (props: any) => {
   /**INITIALIZATIONS */
   const history = useHistory();
-  const { verifiedMemberData, chosen_mb_id, chosen_art_id } = props;
+  const {  chosen_mb_id, chosen_art_id } = props;
   const {
     setChosenMember,
     setChosenMemberBoArticles,
@@ -164,7 +164,7 @@ const VisitOtherPage = (props: any) => {
 
   const subscribeHandler = async (e: any) => {
     try {
-      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+      assert.ok(verifyMemberData, Definer.auth_err1);
 
       const followService = new FollowApiService();
       await followService.subscribe(e.target.value);
@@ -178,7 +178,7 @@ const VisitOtherPage = (props: any) => {
 
   const unSubscribeHandler = async (e: any) => {
     try {
-      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+      assert.ok(verifyMemberData, Definer.auth_err1);
 
       const followingService = new FollowApiService();
       await followingService.unsubscribe(e.target.value);

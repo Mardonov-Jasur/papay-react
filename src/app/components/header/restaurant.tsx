@@ -13,6 +13,7 @@ import {
 import React from "react";
 import { NavLink } from "react-router-dom";
 import Basket from "./basket";
+import { verifyMemberData } from "../../apiservices/verify";
 
 export function NavbarRestaurant(props: any) {
   return (
@@ -38,7 +39,7 @@ export function NavbarRestaurant(props: any) {
                 Oshxona
               </NavLink>
             </Box>
-            {props.verifiedMemberData ? (
+            {verifyMemberData ? (
               <Box className="hover-line" onClick={props.setPath}>
                 <NavLink to="/orders" activeClassName="underline">
                   Buyurtma
@@ -50,7 +51,7 @@ export function NavbarRestaurant(props: any) {
                 Jamiyat
               </NavLink>
             </Box>
-            {props.verifiedMemberData ? (
+            {verifyMemberData ? (
               <Box className="hover-line" onClick={props.setPath}>
                 <NavLink to="/member-page" activeClassName="underline">
                   Sahifam
@@ -71,7 +72,7 @@ export function NavbarRestaurant(props: any) {
               setOrderRebuild={props.setOrderRebuild}
             />
             <Box>
-              {!props.verifiedMemberData ? (
+              {!verifyMemberData ? (
                 <Box>
                   <Button
                     variant="contained"
@@ -87,7 +88,7 @@ export function NavbarRestaurant(props: any) {
                     height: "48px",
                     borderRadius: "24px"
                   }}
-                  src={props.verifiedMemberData.mb_image}
+                  src={verifyMemberData.mb_image}
                   alt=""
                   onClick={props.handleLogOutClick}
                 />

@@ -81,10 +81,10 @@ export function CommunityPage(props: any) {
     setValue(newValue);
   };
 
-  const handlePagination = (event: any, value: number) => {
-    searchArticlesObj.page = value;
-    setSearchArticlesObj({ ...searchArticlesObj });
-  };
+ const handlePaginationChange = (event: any, value: number) => {
+   searchArticlesObj.page = value;
+   setSearchArticlesObj({ ...searchArticlesObj });
+ };
 
   return (
     <div className="community_page">
@@ -132,24 +132,29 @@ export function CommunityPage(props: any) {
                     />
                   </TabPanel>
                 </Stack>
-                <Box className="article_bott">
-                  <Pagination
-                    count={5}
-                    page={1}
-                    renderItem={(item) => (
-                      <PaginationItem
-                        style={{ color: "white" }}
-                        components={{
-                          previous: ArrowBackIcon,
-                          next: ArrowForwardIcon
-                        }}
-                        {...item}
-                        color="secondary"
-                      />
-                    )}
-                    onChange={handlePagination}
-                  />
-                </Box>
+                <Stack className="pagination" style={{marginLeft: "350px", marginBottom: "10px"}}>
+                  <Box className="bottom_box" >
+                    <Pagination
+                      count={
+                        searchArticlesObj.page >= 3
+                          ? searchArticlesObj.page + 1
+                          : 3
+                      }
+                      page={searchArticlesObj.page}
+                      renderItem={(item) => (
+                        <PaginationItem
+                          components={{
+                            previous: ArrowBackIcon,
+                            next: ArrowForwardIcon
+                          }}
+                          {...item}
+                          color="secondary"
+                        />
+                      )}
+                      onChange={handlePaginationChange}
+                    />
+                  </Box>
+                </Stack>
               </TabContext>
             </Stack>
           </Stack>

@@ -28,6 +28,7 @@ import MemberFollowings from "./memberFollowings";
 import MySettings from "./mySettings";
 import TViewer from "./TViewer";
 import TuiEditor from "./TuiEditor";
+import { verifyMemberData } from "../../apiservices/verify";
 // import TuiEditor from "./TuiEditor";
 // import TViewer from "./TViewer";
 // REDUX
@@ -85,7 +86,6 @@ const chosenSingleBoArticlesRetriever = createSelector(
 
 const VisitMyPage = (props: any) => {
   // INITIALIZATIONS
-  const { verifiedMemberData } = props;
   const {
     setChosenMember,
     setChosenMemberBoArticles,
@@ -100,12 +100,12 @@ const VisitMyPage = (props: any) => {
   );
   const [value, setValue] = useState("1");
   const [articlesRebuild, setArticlesRebuild] = useState<Date>(new Date());
-   const [followRebuild, setFollowRebuild] = useState<boolean>(false);
+  const [followRebuild, setFollowRebuild] = useState<boolean>(false);
   const [memberArticleSearchObj, setMemberArticleSearchObj] =
     useState<SearchMemberArticlesObj>({ mb_id: "none", page: 1, limit: 4 });
 
   useEffect(() => {
-    if (!localStorage.getItem("member_data")) {
+    if (!verifyMemberData) {
       sweetFailureProvider("Please login first", true, true);
     }
 
@@ -120,7 +120,7 @@ const VisitMyPage = (props: any) => {
       .catch((err) => console.log(err));
 
     memberService
-      .getChosenMember(verifiedMemberData?._id)
+      .getChosenMember(verifyMemberData?._id)
       .then((data) => setChosenMember(data))
       .catch((err) => console.log(err));
   }, [memberArticleSearchObj, articlesRebuild, followRebuild]);
@@ -197,7 +197,7 @@ const VisitMyPage = (props: any) => {
                       actions_enabled={true}
                       followRebuild={followRebuild}
                       setFollowRebuild={setFollowRebuild}
-                      mb_id={props.verifiedMemberData?._id}
+                      mb_id={verifyMemberData?._id}
                     />
                   </Box>
                 </TabPanel>
@@ -208,14 +208,17 @@ const VisitMyPage = (props: any) => {
                       actions_enabled={true}
                       followRebuild={followRebuild}
                       setFollowRebuild={setFollowRebuild}
-                      mb_id={props.verifiedMemberData?._id}
+                      mb_id={verifyMemberData?._id}
                     />
                   </Box>
                 </TabPanel>
                 <TabPanel value="4">
                   <Box className="menu_name">Maqola yozish</Box>
                   <Box className="menu_content">
-                    <TuiEditor setValue={setValue} setArticlesRebuild={setArticlesRebuild}/>
+                    <TuiEditor
+                      setValue={setValue}
+                      setArticlesRebuild={setArticlesRebuild}
+                    />
                   </Box>
                 </TabPanel>
                 <TabPanel value="5">
@@ -304,8 +307,7 @@ const VisitMyPage = (props: any) => {
                   className="my_page_menu"
                   onChange={handleChange}
                   aria-label="Vertical tabs example"
-                  sx={{ borderRight: 1, borderColor: "divider", width: "95%" }}
-                  >
+                  sx={{ borderRight: 1, borderColor: "divider", width: "95%" }}>
                   <Tab
                     value={"1"}
                     component={() => (

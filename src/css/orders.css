@@ -36,8 +36,8 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 100px;
-  height: 100px;
+  width: 110px;
+  height: 112px;
   margin-top: 10px;
 }
 .order_info_box .order_user_img img {

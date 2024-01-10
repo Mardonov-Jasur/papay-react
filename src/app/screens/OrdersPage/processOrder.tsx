@@ -13,6 +13,7 @@ import { serverApi } from "../../../lib/config";
 import moment from "moment";
 import { sweetErrorHandling, sweetFailureProvider } from "../../../lib/sweetAlert";
 import OrderApiService from "../../apiservices/orderApiService";
+import { verifyMemberData } from "../../apiservices/verify";
 
 /**REDUX SELECTOR */
 const processOrdersRetriever = createSelector(
@@ -36,7 +37,7 @@ export default function ProcessOrders(props: any) {
       const order_id = event.target.value;
       const data = { order_id: order_id, order_status: "DELETED" };
 
-      if (!localStorage.getItem("member_data")) {
+      if (!verifyMemberData) {
         sweetFailureProvider("Please login first", true);
       }
 

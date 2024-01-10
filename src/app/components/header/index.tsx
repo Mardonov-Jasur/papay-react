@@ -21,9 +21,9 @@ import {
 import { style } from "@mui/system";
 import { width } from "dom7";
 import { Logout } from "@mui/icons-material";
+import { verifyMemberData } from "../../apiservices/verify";
 
 export function NavbarHome(props: any) {
-
   return (
     <div className="format home_navbar">
       <Container>
@@ -49,7 +49,7 @@ export function NavbarHome(props: any) {
                 Oshxona
               </NavLink>
             </Box>
-            {props.verifiedMemberData ? (
+            {verifyMemberData ? (
               <Box className="hover-line" onClick={props.setPath}>
                 <NavLink to="/orders" activeClassName="underline">
                   Buyurtma
@@ -61,7 +61,7 @@ export function NavbarHome(props: any) {
                 Jamiyat
               </NavLink>
             </Box>
-            {props.verifiedMemberData ? (
+            {verifyMemberData ? (
               <Box className="hover-line" onClick={props.setPath}>
                 <NavLink to="/member-page" activeClassName="underline">
                   Sahifam
@@ -81,7 +81,7 @@ export function NavbarHome(props: any) {
               onDeleteAll={props.onDeleteAll}
               setOrderRebuild={props.setOrderRebuild}
             />
-            {!props.verifiedMemberData ? (
+            {!verifyMemberData ? (
               <Box>
                 <Button
                   variant="contained"
@@ -93,7 +93,7 @@ export function NavbarHome(props: any) {
             ) : (
               <img
                 style={{ width: "48px", height: "48px", borderRadius: "24px" }}
-                src={props.verifiedMemberData.mb_image}
+                src={verifyMemberData.mb_image}
                 alt=""
                 onClick={props.handleLogOutClick}
               />
@@ -156,7 +156,7 @@ export function NavbarHome(props: any) {
             </Box>
             <Box className="timeline_service">24 soat xizmatingizdamiz!</Box>
             <Box sx={{ mt: "98px" }}>
-              {!props.verifiedMemberData ? (
+              {!verifyMemberData ? (
                 <Button
                   variant="contained"
                   style={{

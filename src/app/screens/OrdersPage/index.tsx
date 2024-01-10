@@ -15,6 +15,7 @@ import { Dispatch } from "@reduxjs/toolkit";
 import { setPausedOrders, setFinishedOrders, setProcessOrders } from "./slice";
 import OrderApiService from "../../apiservices/orderApiService";
 import { Member } from "../../../types/user";
+import { verifyMemberData } from "../../apiservices/verify";
 
 //redux slice
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -28,7 +29,6 @@ export function OrdersPage(props: any) {
   const [value, setValue] = useState("1");
   const { setPausedOrders, setFinishedOrders, setProcessOrders } =
     actionDispatch(useDispatch());
-  const verifiedMemberData: Member | null = props.verifiedMemberData;
 
   useEffect(() => {
     const orderService = new OrderApiService();
@@ -57,7 +57,7 @@ export function OrdersPage(props: any) {
         maxWidth="lg"
         style={{ display: "flex", flexDirection: "row" }}
         sx={{ mt: "50px", mb: "50px" }}>
-        <Stack className="order_left" >
+        <Stack className="order_left">
           <TabContext value={value}>
             <Box className="order_nav_frame">
               <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
@@ -85,24 +85,25 @@ export function OrdersPage(props: any) {
             <img
               className="user_img"
               style={{
-                width: "117px",
+                width: "110px",
                 height: "112px",
                 backgroundSize: "cover",
                 borderRadius: "17px",
                 boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
-                marginTop: "-100px",
+                marginTop: "-110px",
+                marginBottom: "12px"
               }}
-              src={verifiedMemberData?.mb_image}
+              src={verifyMemberData?.mb_image}
               alt="picturehere"
             />
-            <p className="order_user_name">{verifiedMemberData?.mb_nick}</p>
+            <p className="order_user_name">{verifyMemberData?.mb_nick}</p>
             <p className="order_user_prof">
-              {verifiedMemberData?.mb_type ?? "Foydalanuvchi"}
+              {verifyMemberData?.mb_type ?? "Foydalanuvchi"}
             </p>
             <Box className="marginer"></Box>
             <Box className="order_user_address">
               <LocationOnIcon style={{ color: "#2E3A59" }} />
-              <p>{verifiedMemberData?.mb_address ?? "manzil kiritilmagan"}</p>
+              <p>{verifyMemberData?.mb_address ?? "manzil kiritilmagan"}</p>
             </Box>
           </Box>
           <Box className="payment_box">

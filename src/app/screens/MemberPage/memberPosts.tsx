@@ -10,6 +10,7 @@ import assert from "assert";
 import { Definer } from "../../../lib/Definer";
 import MemberApiService from "../../apiservices/memberApiService";
 import { sweetErrorHandling, sweetTopSmallSuccessAlert } from "../../../lib/sweetAlert";
+import { verifyMemberData } from "../../apiservices/verify";
 
 const MemberPosts = (props: any) => {
   const {
@@ -21,7 +22,7 @@ const MemberPosts = (props: any) => {
   const targetLikeHandler = async (e: any) => {
     try {
       e.stopPropagation();
-      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+      assert.ok(verifyMemberData, Definer.auth_err1);
       const memberService = new MemberApiService();
       const id = e.target.id,
         like_result: any = await memberService.memberLikeTarget({
@@ -47,7 +48,7 @@ const MemberPosts = (props: any) => {
           <Link
             className="all_article_box"
             style={{ height: "180px", cursor: "pointer" }}
-            onClick= {() => renderChosenArticleHandler(article?._id)}>
+            onClick={() => renderChosenArticleHandler(article?._id)}>
             <Box className="all_article_img" style={{ height: "180px" }}>
               <img src={image_path} alt="" />
             </Box>
@@ -118,15 +119,13 @@ const MemberPosts = (props: any) => {
                     {article.art_likes}
                     <div
                       style={{
-                        marginTop: "-30px",
-                        marginBottom: "-30px"
+                        marginTop: "-20px",
+                        marginBottom: "-20px"
                       }}>
                       <Checkbox
                         {...label}
-                        icon={<Favorite style={{ color: "grey" }} />}
-                        checkedIcon={
-                          <FavoriteBorder style={{ color: "red" }} />
-                        }
+                        icon={<Favorite/>}
+                        checkedIcon={<FavoriteBorder />}
                         id={article?._id}
                         onClick={targetLikeHandler}
                         checked={
