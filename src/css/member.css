@@ -81,6 +81,7 @@
 
 .my_page .my_page_right .order_info_box .settings_btn {
   position: absolute;
+  cursor: pointer;
   width: 48px;
   height: 18px;
   padding-top: 28px;
@@ -472,6 +473,7 @@
   border-radius: 50%;
   width: 100px;
   height: 100px;
+  margin-left: 7px;
 }
 
 .my_settings_page .member_media_frame {
