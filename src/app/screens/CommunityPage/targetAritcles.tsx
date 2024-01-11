@@ -40,7 +40,7 @@ const TargetArticles = (props: any) => {
           ? `${serverApi}/${article.art_image}`
           : "/auth/user_3.webp";
         return (
-          <Link className="all_article_box" href={``}>
+          <Link className="all_article_box" href={`/member-page/other?mb_id=${article.mb_id}&art_id=${article._id}`}>
             <Box className="all_article_img">
               <img src={image} alt="" />
             </Box>
