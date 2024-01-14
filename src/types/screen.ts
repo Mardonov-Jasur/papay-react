@@ -49,7 +49,7 @@ export interface CommunityPageState {
 export interface MemberPageState {
   chosenMember: Member | null;
   chosenMemberBoArticles: BoArticle[];
-  chosenSingleBoArticles: BoArticle | null;
+  chosenSingleBoArticle: BoArticle | null;
   memberFollowers: Follower[];
   memberFollowings: Following[];
 }

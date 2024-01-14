@@ -39,12 +39,12 @@ import { Dispatch } from "@reduxjs/toolkit";
 import {
   retrieveChosenMember,
   retrieveChosenMemberBoArticles,
-  retrieveChosenSingleBoArticles
+  retrievechosenSingleBoArticle
 } from "./selector";
 import {
   setChosenMember,
   setChosenMemberBoArticles,
-  setChosenSingleBoArticles
+  setchosenSingleBoArticle
 } from "./slice";
 import { BoArticle, SearchMemberArticlesObj } from "../../../types/boArticle";
 import {
@@ -60,8 +60,8 @@ const actionDispatch = (dispatch: Dispatch) => ({
   setChosenMember: (data: Member) => dispatch(setChosenMember(data)),
   setChosenMemberBoArticles: (data: BoArticle[]) =>
     dispatch(setChosenMemberBoArticles(data)),
-  setChosenSingleBoArticles: (data: BoArticle) =>
-    dispatch(setChosenSingleBoArticles(data))
+  setchosenSingleBoArticle: (data: BoArticle) =>
+    dispatch(setchosenSingleBoArticle(data))
 });
 
 /**REDUX SELECTOR */
@@ -77,10 +77,10 @@ const chosenMemberBoArticlesRetriever = createSelector(
     chosenMemberBoArticles
   })
 );
-const chosenSingleBoArticlesRetriever = createSelector(
-  retrieveChosenSingleBoArticles,
-  (chosenSingleBoArticles) => ({
-    chosenSingleBoArticles
+const chosenSingleBoArticleRetriever = createSelector(
+  retrievechosenSingleBoArticle,
+  (chosenSingleBoArticle) => ({
+    chosenSingleBoArticle
   })
 );
 
@@ -89,15 +89,14 @@ const VisitMyPage = (props: any) => {
   const {
     setChosenMember,
     setChosenMemberBoArticles,
-    setChosenSingleBoArticles
+    setchosenSingleBoArticle
   } = actionDispatch(useDispatch());
   const { chosenMember } = useSelector(chosenMemberRetriever);
   const { chosenMemberBoArticles } = useSelector(
     chosenMemberBoArticlesRetriever
   );
-  const { chosenSingleBoArticles } = useSelector(
-    chosenSingleBoArticlesRetriever
-  );
+  const { chosenSingleBoArticle } = useSelector(chosenSingleBoArticleRetriever);
+  console.log("boooooarticle", chosenSingleBoArticle);
   const [value, setValue] = useState("1");
   const [articlesRebuild, setArticlesRebuild] = useState<Date>(new Date());
   const [followRebuild, setFollowRebuild] = useState<boolean>(false);
@@ -140,7 +139,7 @@ const VisitMyPage = (props: any) => {
       communityService
         .getChosenArticle(art_id)
         .then((data) => {
-          setChosenSingleBoArticles(data);
+          setchosenSingleBoArticle(data);
           setValue("5");
         })
         .catch((err) => console.log(err));
@@ -224,7 +223,7 @@ const VisitMyPage = (props: any) => {
                 <TabPanel value="5">
                   <Box className="menu_name">Tanlangan Maqola</Box>
                   <Box className="menu_content" style={{ height: "500px" }}>
-                    <TViewer chosenSingleBoArticles={chosenSingleBoArticles} />
+                    <TViewer chosenSingleBoArticle={chosenSingleBoArticle} />
                   </Box>
                 </TabPanel>
                 <TabPanel value="6">

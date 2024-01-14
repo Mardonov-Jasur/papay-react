@@ -28,12 +28,12 @@ import { Dispatch } from "@reduxjs/toolkit";
 import {
   retrieveChosenMember,
   retrieveChosenMemberBoArticles,
-  retrieveChosenSingleBoArticles
+  retrievechosenSingleBoArticle
 } from "./selector";
 import {
   setChosenMember,
   setChosenMemberBoArticles,
-  setChosenSingleBoArticles
+  setchosenSingleBoArticle
 } from "./slice";
 import { BoArticle, SearchMemberArticlesObj } from "../../../types/boArticle";
 import { useHistory } from "react-router-dom";
@@ -53,8 +53,8 @@ const actionDispatch = (dispatch: Dispatch) => ({
   setChosenMember: (data: Member) => dispatch(setChosenMember(data)),
   setChosenMemberBoArticles: (data: BoArticle[]) =>
     dispatch(setChosenMemberBoArticles(data)),
-  setChosenSingleBoArticles: (data: BoArticle) =>
-    dispatch(setChosenSingleBoArticles(data))
+  setchosenSingleBoArticle: (data: BoArticle) =>
+    dispatch(setchosenSingleBoArticle(data))
 });
 
 /**REDUX SELECTOR */
@@ -70,29 +70,27 @@ const chosenMemberBoArticlesRetriever = createSelector(
     chosenMemberBoArticles
   })
 );
-const chosenSingleBoArticlesRetriever = createSelector(
-  retrieveChosenSingleBoArticles,
-  (chosenSingleBoArticles) => ({
-    chosenSingleBoArticles
+const chosenSingleBoArticleRetriever = createSelector(
+  retrievechosenSingleBoArticle,
+  (chosenSingleBoArticle) => ({
+    chosenSingleBoArticle
   })
 );
 
 const VisitOtherPage = (props: any) => {
   /**INITIALIZATIONS */
   const history = useHistory();
-  const {  chosen_mb_id, chosen_art_id } = props;
+  const { chosen_mb_id, chosen_art_id } = props;
   const {
     setChosenMember,
     setChosenMemberBoArticles,
-    setChosenSingleBoArticles
+    setchosenSingleBoArticle
   } = actionDispatch(useDispatch());
   const { chosenMember } = useSelector(chosenMemberRetriever);
   const { chosenMemberBoArticles } = useSelector(
     chosenMemberBoArticlesRetriever
   );
-  const { chosenSingleBoArticles } = useSelector(
-    chosenSingleBoArticlesRetriever
-  );
+  const { chosenSingleBoArticle } = useSelector(chosenSingleBoArticleRetriever);
   const [value, setValue] = useState("1");
   const [memberArticleSearchObj, setMemberArticleSearchObj] =
     useState<SearchMemberArticlesObj>({
@@ -113,7 +111,7 @@ const VisitOtherPage = (props: any) => {
       communityService
         .getChosenArticle(chosen_art_id)
         .then((data) => {
-          setChosenSingleBoArticles(data);
+          setchosenSingleBoArticle(data);
           setValue("4");
         })
         .catch((err) => console.log(err));
@@ -152,7 +150,7 @@ const VisitOtherPage = (props: any) => {
       communityService
         .getChosenArticle(art_id)
         .then((data) => {
-          setChosenSingleBoArticles(data);
+          setchosenSingleBoArticle(data);
           setValue("4");
         })
         .catch((err) => console.log(err));
@@ -256,7 +254,7 @@ const VisitOtherPage = (props: any) => {
                 <TabPanel value="4">
                   <Box className="menu_name">Tanlangan Maqola</Box>
                   <Box className="menu_content">
-                    <TViewer chosenSingleBoArticles={chosenSingleBoArticles} />
+                    <TViewer chosenSingleBoArticle={chosenSingleBoArticle} />
                   </Box>
                 </TabPanel>
               </Box>

@@ -13,9 +13,9 @@ export const retrieveChosenMemberBoArticles = createSelector(
   (MemberPage) => MemberPage.chosenMemberBoArticles
 );
 
-export const retrieveChosenSingleBoArticles = createSelector(
+export const retrievechosenSingleBoArticle = createSelector(
   selectMemberPage,
-  (MemberPage) => MemberPage.chosenSingleBoArticles
+  (MemberPage) => MemberPage.chosenSingleBoArticle
 );
 export const retrieveMemberFollowers = createSelector(
   selectMemberPage,

@@ -38,7 +38,7 @@ const targetBoArticlesRetriever = createSelector(
 );
 
 export function CommunityPage(props: any) {
-  // INITIALIZATIONS
+  /**INITIALIZATIONS */
   const { setTargetBoArticles } = actionDispatch(useDispatch());
   const { targetBoArticles } = useSelector(targetBoArticlesRetriever);
   const [value, setValue] = useState("1");
@@ -81,10 +81,10 @@ export function CommunityPage(props: any) {
     setValue(newValue);
   };
 
- const handlePaginationChange = (event: any, value: number) => {
-   searchArticlesObj.page = value;
-   setSearchArticlesObj({ ...searchArticlesObj });
- };
+  const handlePaginationChange = (event: any, value: number) => {
+    searchArticlesObj.page = value;
+    setSearchArticlesObj({ ...searchArticlesObj });
+  };
 
   return (
     <div className="community_page">
@@ -132,8 +132,10 @@ export function CommunityPage(props: any) {
                     />
                   </TabPanel>
                 </Stack>
-                <Stack className="pagination" style={{marginLeft: "350px", marginBottom: "10px"}}>
-                  <Box className="bottom_box" >
+                <Stack
+                  className="pagination"
+                  style={{ marginLeft: "350px", marginBottom: "10px" }}>
+                  <Box className="bottom_box">
                     <Pagination
                       count={
                         searchArticlesObj.page >= 3

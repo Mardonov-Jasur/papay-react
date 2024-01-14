@@ -5,10 +5,14 @@ import "@toast-ui/editor/dist/toastui-editor.css";
 
 const TViewer = (props: any) => {
   const editorRef = useRef(null);
+  console.log("chooooosen", props.chosenSingleBoArticle?.art_content);
 
   return (
     <Stack className="tviewer">
-      <Viewer ref={editorRef} initialValue={props.chosenSingleBoArticles?.art_content} />
+      <Viewer
+        ref={editorRef}
+        initialValue={props.chosenSingleBoArticle?.art_content}
+      />
     </Stack>
   );
 };

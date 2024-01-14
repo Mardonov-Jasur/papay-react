@@ -426,7 +426,6 @@
     background-size: cover;
     object-fit: contain;
     background-repeat: no-repeat;
-    background: url("/public/restaurant/food-3.jpg")
 }
 
 .homepage .article_box .article_info {
@@ -450,6 +449,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    gap: 3px;
 }
 
 .homepage .article_author .author_username {
@@ -484,43 +484,46 @@
 }
 
 .homepage .article_main .article_news {
-  margin-top: 18px;
+  margin-top: 20px;
   width: 100%;
-  height: 380px;
+  height: 350px;
   display: flex;
   border-radius: 20px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  /* overflow: hidden; */
   justify-content: center;
   box-shadow: 0px 4px 40px rgba(83, 38, 208, 0.25);
+  background-color: rgba(255, 255, 255, 0.86);
+      border: 5px solid rgba(15, 15, 15, 0.96);
 }
 
-/* /* .homepage .article_news .image1 {
-    margin-right: -40px;
-    width: 216px;
-    height: 200px;
-    transform: matrix(1, 0, 0, 1, 0, 0);
-    background: url("/public/restaurant/food-3.jpg");
-    background-size: cover;
-} */
-
-.homepage .article_news {
-    margin-right: 40px;
-    width: 216px;
-    height: 200px;
-    transform: matrix(1, 0, 0, 1, 0, 0);
-    /* background: url("/public/restaurant/food-4.jpg"); */
-    background-size: cover;
+.article_news div {
+  margin-right: 30px;
+   justify-content: center;
+    align-items: center;
+  height: 350px;
+  width: 500px;
 }
 
-.homepage .article_news img {
-     background-size: cover;
+.article_news img {
+  width: 450px;
+  height: 270px;
+  object-fit: fill;
+  border-radius: 10px;
+      background-size: cover;
+       border: 5px solid rgba(15, 15, 15, 0.96);
 }
 
-.homepage .article_news h1 {
-    color: #e3c08d;
+.homepage .article_news p {
+   font-family: "Poppins";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    text-align: center;
+    line-height: 26px;
+    color: #000000;
 }
 
 

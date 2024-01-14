@@ -22,7 +22,7 @@ export const retrieveTrendBoArticles = createSelector(
   selectHomePage,
   (HomePage) => HomePage.trendBoArticles
 );
-export const retrievellewsBoArticles = createSelector(
+export const retrieveNewsBoArticles = createSelector(
   selectHomePage,
   (HomePage) => HomePage.newsBoArticles
 );
