@@ -93,9 +93,7 @@ export default function Recommendations() {
             <Stack className="article_container">
               <Box className="article_category ">Ko'p ko'rilgan</Box>
               {bestBoArticles?.map((article: BoArticle) => {
-                const image = article?.art_image
-                  ? `${serverApi}/${article?.art_image}`
-                  : "/community/default_art.jpeg";
+                const image = "/community/default_art.jpeg";
 
                 return (
                   <Stack className="article_box" key={article?._id}>
@@ -167,7 +165,7 @@ export default function Recommendations() {
               })}
             </Stack>
             <Stack className="article_container">
-              <Box className="article_category">Mashhurlar</Box>
+              <Box className="article_category">Mashxurlar</Box>
               {newsBoArticles?.map((article: BoArticle) => {
                 console.log("articleeeeeee", article)
                 return (

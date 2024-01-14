@@ -322,6 +322,7 @@
 .all_article_container {
   width: 100%;
   padding-right: 14px;
+  margin-bottom: 40px;
 }
 
 .my_page .all_article_box .views {
