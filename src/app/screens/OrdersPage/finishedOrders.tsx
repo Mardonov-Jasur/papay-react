@@ -18,6 +18,7 @@ const finishedOrdersRetriever = createSelector(
     finishedOrders
   })
 );
+  console.log(" finish pageeeeeee", retrieveFinishedOrders);
 
 
 export default function FinishedOrders(props: any) {

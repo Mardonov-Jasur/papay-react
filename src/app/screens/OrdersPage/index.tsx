@@ -41,10 +41,11 @@ export function OrdersPage(props: any) {
       .then((data) => setProcessOrders(data))
       .catch((err) => console.log(err));
     orderService
-      .getMyOrders("finished")
+      .getMyOrders("DELETED")
       .then((data) => setFinishedOrders(data))
       .catch((err) => console.log(err));
   }, [props.orderRebuild]);
+  console.log("index finish",setFinishedOrders);
 
   // Handlers //
   const handleChange = (event: any, newValue: string) => {
